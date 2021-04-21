@@ -72,6 +72,23 @@ async function updateUser(req, res) {
   }
 }
 
-async function deleteUser(req, res) {}
+async function deleteUser(req, res) {
+  try {
+    const { id } = req.body;
+    const deletedUser = await User.destroy(id);
+    if (!deletedUser) {
+      return res.status(400).send("User not found");
+    }
+    res.status(200).json({ message: "User was deleted" });
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+}
 
-module.exports = { registration, validationUser, login, updateUser };
+module.exports = {
+  registration,
+  validationUser,
+  login,
+  updateUser,
+  deleteUser,
+};

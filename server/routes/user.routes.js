@@ -10,6 +10,7 @@ router.post(
 );
 router.post("/login", userController.validationUser, userController.login);
 router.patch("/update", userController.updateUser);
+router.delete("/delete", userController.deleteUser);
 // router.get("/auth", authMiddleware, userController.check);
 
 module.exports = router;
