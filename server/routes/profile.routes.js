@@ -4,11 +4,7 @@ const profileController = require("../controllers/profile.controller");
 const authController = require("../controllers/auth.controller");
 
 router.post("/create", authController.authorize, profileController.addProfile);
-router.get(
-  "/profiles",
-  authController.authorize,
-  profileController.getAllPrfoles
-);
+router.get("/:id", authController.authorize, profileController.getAllProfiles);
 router.patch(
   "/update/:id",
   authController.authorize,

@@ -1,7 +1,8 @@
 const Joi = require("joi");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { User } = require("../models/models");
+const { User, Profile } = require("../models/models");
+// const { func, function } = require("joi");
 
 const generateJwt = (id) => {
   return jwt.sign({ id }, "~E(/]s@}};8a%|/s)ni5z_Ji+B");
@@ -83,6 +84,7 @@ async function deleteUser(req, res) {
     const {
       params: { id },
     } = req;
+    const destroyProfiles = await Profile.destroy({ where: { userId: id } });
     const deletedUser = await User.destroy({ where: { id: id } });
     if (!deletedUser) {
       return res.status(400).send("User not found");
@@ -107,7 +109,7 @@ async function userLogout(req, res) {
 async function getAllUsers(req, res) {
   try {
     const user = await User.findAll({
-      attributes: ["id", "email", "role"],
+      attributes: ["id", "email", "role", "profiles"],
     });
     res.status(200).json({ user });
   } catch (error) {
@@ -115,12 +117,46 @@ async function getAllUsers(req, res) {
   }
 }
 
+const getBirthday = function (arr) {
+  let count = 0;
+  const nowyear = new Date().getFullYear();
+  const nowmonth = new Date().getMonth() + 1; // ____
+  const nowday = new Date().getDate();
+  arr.map((el) => {
+    const birthyear = +el.birthdate.slice(6);
+    const birthmonth = +el.birthdate.slice(3, 6);
+    const birthday = +el.birthdate.slice(0, 2);
+    if (nowyear - birthyear > 18) {
+      return (count = count + 1);
+    }
+    if (nowyear - birthyear === 18) {
+      if (nowmonth > birthmonth) {
+        return (count = count + 1);
+      }
+      if (nowmonth === birthmonth) {
+        if (nowday >= birthday) {
+          return (count = count + 1);
+        }
+      }
+    }
+  });
+  return count;
+};
+
 async function getInfo(req, res) {
   try {
-    const user = await User.findAndCountAll({
+    const usersCount = await User.findAll({
       attributes: ["id"],
     });
-    res.status(200).json({ user: user.count });
+    const userProfiles = await Profile.findAll({
+      attributes: ["id", "birthdate"],
+    });
+    const oldProfiles = getBirthday(userProfiles);
+    res.status(200).json({
+      users: usersCount.length,
+      profiles: userProfiles.length,
+      oldProfiles: oldProfiles,
+    });
   } catch (error) {
     console.log(error);
   }

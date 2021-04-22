@@ -7,6 +7,7 @@ const User = sequelize.define("user", {
   password: { type: DataTypes.STRING },
   role: { type: DataTypes.STRING, defaultValue: "USER" },
   token: { type: DataTypes.STRING, defaultValue: null },
+  allProfiles: { type: DataTypes.INTEGER, defaultValue: 0 },
 });
 
 const Profile = sequelize.define("profile", {

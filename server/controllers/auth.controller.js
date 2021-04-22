@@ -28,8 +28,7 @@ async function authorize(req, res, next) {
 async function checkRole(req, res, next) {
   try {
     const { role } = req.user;
-    const user = await User.findOne({ where: { role: role } });
-    if (user.role !== "ADMIN" || req.user.role !== "ADMIN") {
+    if (role !== "ADMIN") {
       return res.status(401).json({ message: "You have not rights" });
     }
     next();
