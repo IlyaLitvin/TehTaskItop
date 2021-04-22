@@ -3,13 +3,33 @@ const { Profile } = require("../models/models");
 async function addProfile(req, res) {
   try {
     const { name, gender, birthdate, city } = req.body;
+    const { id } = req.user;
+    if (!id) {
+      res.status(403).send({ message: "Not authorized" });
+    }
     const profile = await Profile.create({
       name,
       gender,
       birthdate,
       city,
+      userId: id,
     });
     res.status(200).json({ profile });
+  } catch (error) {
+    res.status(404).send(error.message);
+  }
+}
+
+async function getAllPrfoles(req, res) {
+  try {
+    const { id } = req.user;
+    if (!id) {
+      res.status(403).send({ message: "Not authorized" });
+    }
+    const getProfiles = await Profile.findAll({
+      attributes: ["id", "name", "gender", "birthdate", "city"],
+    });
+    res.status(200).json({ getProfiles });
   } catch (error) {
     res.status(404).send(error.message);
   }
@@ -22,7 +42,6 @@ async function updateProfile(req, res) {
       params: { id },
     } = req;
     const profile = await Profile.findOne({ where: { id: id } });
-    console.log(profile);
     if (!profile) {
       return res.status(404).send({ message: "Profile not found" });
     }
@@ -48,4 +67,4 @@ async function deleteProfile(req, res) {
   }
 }
 
-module.exports = { addProfile, updateProfile, deleteProfile };
+module.exports = { addProfile, getAllPrfoles, updateProfile, deleteProfile };
