@@ -1,0 +1,84 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+
+.title {
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  margin-bottom: 130px;
+
+  color: black;
+}
+
+.registrationInputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 90px;
+}
+
+.inputField {
+  height: 36px;
+  width: 289px;
+
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1.214;
+  letter-spacing: 0.04em;
+
+  color: black;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.formLabel {
+  position: relative;
+  width: fit-content;
+}
+
+.formLabel:not(:last-child) {
+  margin-bottom: 40px;
+}
+
+.validField {
+  position: absolute;
+  color: rgb(238, 20, 20);
+  top: 45px;
+  left: 0px;
+
+  font-size: 12px;
+  line-height: 1.415;
+  letter-spacing: 0.04em;
+}
+
+.formLabel .errorInput {
+  border-bottom: 1px solid red;
+  background-color: rgba(228, 161, 161, 0.1);
+  color: red;
+}
+
+.errorInput::placeholder {
+  color: red;
+}
+
+.button {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+
+  width: 135px;
+  height: 56px;
+
+  background-color: #eff0f6;
+  color: #4e4b66;
+  outline: none;
+
+  border: 1px solid transparent;
+  border-radius: 30px;
+}
