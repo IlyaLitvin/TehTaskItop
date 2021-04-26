@@ -22,7 +22,7 @@ export default function Login() {
       >
         {({ errors, touched }) => (
           <Form>
-            <h1 className={css.title}>Create your account</h1>
+            <h1 className={css.title}>Sign in</h1>
             <div className={css.registrationInputs}>
               <label className={css.formLabel}>
                 <Field

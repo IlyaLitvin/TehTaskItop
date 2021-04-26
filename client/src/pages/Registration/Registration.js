@@ -2,6 +2,8 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import css from "./Registration.module.css";
+import signUp from "../../services/servicesApi";
+import { useDispatch } from "react-redux";
 
 const RegisterSchema = Yup.object().shape({
   email: Yup.string()
@@ -10,15 +12,24 @@ const RegisterSchema = Yup.object().shape({
     .required("This is a required field"),
   password: Yup.string()
     .required("This is a required field")
-    .min(6, "Too short!"),
+    .min(2, "Too short!"),
 });
 
 export default function Registration() {
+  const dispatch = useDispatch();
+
+  const handeSumbit = ({ email, password, role }) => {
+    role
+      ? dispatch(signUp({ email, password, role: "ADMIN" }))
+      : dispatch(signUp({ email, password }));
+  };
+
   return (
     <div className={css.wrapper}>
       <Formik
-        initialValues={{ email: "", password: "", toggle: false }}
+        initialValues={{ email: "", password: "", role: false }}
         validationSchema={RegisterSchema}
+        onSubmit={handeSumbit}
       >
         {({ errors, touched }) => (
           <Form>
@@ -56,7 +67,7 @@ export default function Registration() {
               </label>
               <label>
                 Admin
-                <Field type="checkbox" name="toggle" />
+                <Field type="checkbox" name="role" />
               </label>
             </div>
             <button type="submit" className={css.button}>

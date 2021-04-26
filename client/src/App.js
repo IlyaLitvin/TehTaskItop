@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import Registration from "./pages/Registration/Registration";
 import Login from "./pages/Login/Login";
@@ -10,15 +10,26 @@ import Users from "./pages/Users/Users";
 import "./App";
 
 function App() {
+  const isAuth = false;
+  const role = "";
   return (
     <Fragment>
-      <Switch>
-        <Route exact path="/registration" component={Registration}></Route>
-        <Route exact path="/login" component={Login}></Route>
-        <Route exact path="/profiles" component={Profiles}></Route>
-        <Route exact path="/dashboard" component={Dashboard}></Route>
-        <Route exact path="/users" component={Users}></Route>
-      </Switch>
+      {!isAuth ? (
+        <Switch>
+          <Route exact path="/registration" component={Registration} />
+          <Route exact path="/login" component={Login} />
+          <Redirect to="/login" />
+        </Switch>
+      ) : (
+        <Switch>
+          <Route exact path="/profiles" component={Profiles} />
+          {role === "ADMIN" && (
+            <Route exact path="/dashboard" component={Dashboard} />
+          )}
+          {role === "ADMIN" && <Route exact path="/users" component={Users} />}
+          <Redirect to="/profiles" />
+        </Switch>
+      )}
     </Fragment>
   );
 }
