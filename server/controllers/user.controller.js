@@ -14,8 +14,8 @@ async function registration(req, res) {
     const hashedPassword = await bcrypt.hash(password, 4);
     const user = await User.create({
       email,
-      role,
       password: hashedPassword,
+      role,
     });
     const token = generateJwt(user.id);
     user.update({ token: token });
