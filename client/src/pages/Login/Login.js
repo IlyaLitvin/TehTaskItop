@@ -2,6 +2,10 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import css from "./Login.module.css";
+import { useDispatch } from "react-redux";
+import authOperations from "../../auth/authOperations";
+import { useHistory } from "react-router-dom";
+import routes from "../../routes";
 
 const RegisterSchema = Yup.object().shape({
   email: Yup.string()
@@ -10,15 +14,24 @@ const RegisterSchema = Yup.object().shape({
     .required("This is a required field"),
   password: Yup.string()
     .required("This is a required field")
-    .min(6, "Too short!"),
+    .min(3, "Too short!"),
 });
 
 export default function Login() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const handeSumbit = ({ email, password }) => {
+    dispatch(authOperations.login({ email, password }));
+    history.push(routes.profiles);
+  };
+
   return (
     <div className={css.wrapper}>
       <Formik
-        initialValues={{ email: "", password: "", toggle: false }}
+        initialValues={{ email: "", password: "" }}
         validationSchema={RegisterSchema}
+        onSubmit={handeSumbit}
       >
         {({ errors, touched }) => (
           <Form>

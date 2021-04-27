@@ -1,21 +1,9 @@
-import {
-  configureStore,
-  combineReducers,
-  createAction,
-  createReducer,
-} from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import authReducer from "./auth/authReducer";
 
-export const signUpSucces = createAction("signUpSucces");
-
-const reducer = createReducer(
-  { user: { token: "", role: "" } },
-  {
-    [signUpSucces]: (state, { payload }) => ({
-      ...state,
-      user: { token: payload.token, role: payload.role },
-    }),
-  }
-);
+export const reducer = combineReducers({
+  authReducer,
+});
 
 const store = configureStore({
   reducer: reducer,

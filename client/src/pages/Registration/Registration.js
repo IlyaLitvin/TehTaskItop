@@ -2,8 +2,10 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import css from "./Registration.module.css";
-import signUp from "../../services/servicesApi";
+import authOperations from "../../auth/authOperations";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import routes from "../../routes";
 
 const RegisterSchema = Yup.object().shape({
   email: Yup.string()
@@ -17,11 +19,15 @@ const RegisterSchema = Yup.object().shape({
 
 export default function Registration() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handeSumbit = ({ email, password, role }) => {
     role
-      ? dispatch(signUp({ email, password, role: "ADMIN" }))
-      : dispatch(signUp({ email, password }));
+      ? dispatch(
+          authOperations.registration({ email, password, role: "ADMIN" })
+        )
+      : dispatch(authOperations.registration({ email, password }));
+    history.push(routes.login);
   };
 
   return (
