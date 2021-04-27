@@ -10,7 +10,7 @@ import Users from "./pages/Users/Users";
 import "./App";
 
 function App() {
-  const isAuth = false;
+  let isAuth = false;
   const role = "";
   return (
     <Fragment>
@@ -18,7 +18,6 @@ function App() {
         <Switch>
           <Route exact path="/registration" component={Registration} />
           <Route exact path="/login" component={Login} />
-          <Redirect to="/login" />
         </Switch>
       ) : (
         <Switch>

@@ -1,7 +1,13 @@
 const initState = {
-  user: {
-    email: "",
-    jwt: "",
-  },
+  users: [
+    {
+      user: {
+        token: null,
+        role: null,
+      },
+    },
+  ],
   profiles: {},
 };
+
+export default initState;
