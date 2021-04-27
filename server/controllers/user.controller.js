@@ -19,7 +19,7 @@ async function registration(req, res) {
     });
     const token = generateJwt(user.id);
     user.update({ token: token });
-    res.status(200).json({ token });
+    res.status(200).json({ token, role });
   } catch (error) {
     res.status(409).send("Email in use");
     console.log(error.message);
@@ -55,7 +55,7 @@ async function login(req, res) {
   }
   const token = generateJwt(user.id);
   user.update({ token: token });
-  return res.status(201).json({ token });
+  return res.status(200).json({ token: token, role: user.role });
 }
 
 async function updateUser(req, res) {
