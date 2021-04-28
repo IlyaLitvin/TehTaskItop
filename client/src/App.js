@@ -12,13 +12,14 @@ import "./App";
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
-  const role = "";
+  const role = useSelector((state) => state.user.role);
   return (
     <Fragment>
       {!isAuth ? (
         <Switch>
           <Route exact path="/registration" component={Registration} />
           <Route exact path="/login" component={Login} />
+          <Redirect to="/login" />
         </Switch>
       ) : (
         <Switch>

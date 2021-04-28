@@ -5,7 +5,7 @@ export default function Profiles() {
   return (
     <div>
       <NavBar />
-      Profiles:
+      <h2>Profiles:</h2>
     </div>
   );
 }

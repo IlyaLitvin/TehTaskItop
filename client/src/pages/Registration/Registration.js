@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import css from "./Registration.module.css";
 import authOperations from "../../auth/authOperations";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import routes from "../../routes";
 
 const RegisterSchema = Yup.object().shape({
@@ -79,6 +79,9 @@ export default function Registration() {
             <button type="submit" className={css.button}>
               Sign Up
             </button>
+            <h4>
+              Already have a<NavLink to="/login"> login?</NavLink>
+            </h4>
           </Form>
         )}
       </Formik>
