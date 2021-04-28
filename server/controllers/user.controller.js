@@ -55,7 +55,9 @@ async function login(req, res) {
   }
   const token = generateJwt(user.id);
   user.update({ token: token });
-  return res.status(200).json({ token: token, role: user.role });
+  return res
+    .status(200)
+    .json({ token: token, role: user.role, email: user.email });
 }
 
 async function updateUser(req, res) {
