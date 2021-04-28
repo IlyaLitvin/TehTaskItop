@@ -16,10 +16,6 @@ const getUserRequest = createAction("/getUserRequest");
 const getUserSuccess = createAction("/getUserSuccess");
 const getUserError = createAction("/getUserError");
 
-const updateUserRequest = createAction("/updateUserRequest");
-const updateUserSuccess = createAction("/updateUserSuccess");
-const updateUserError = createAction("/updateUserError");
-
 const deleteUserRequest = createAction("/deleteUserRequest");
 const deleteUserSuccess = createAction("/deleteUserSuccess");
 const deleteUserError = createAction("/deleteUserError");
@@ -45,9 +41,6 @@ export default {
   getUserRequest,
   getUserSuccess,
   getUserError,
-  updateUserRequest,
-  updateUserSuccess,
-  updateUserError,
   deleteUserRequest,
   deleteUserSuccess,
   deleteUserError,

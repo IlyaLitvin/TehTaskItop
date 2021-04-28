@@ -88,4 +88,4 @@ const getUser = (data, token) => (dispatch) => {
     );
 };
 
-export default { registration, login, logOut, getAllUsers };
+export default { registration, login, logOut, getAllUsers, getUser };

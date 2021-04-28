@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import Registration from "./pages/Registration/Registration";
 import Login from "./pages/Login/Login";
@@ -10,7 +11,7 @@ import Users from "./pages/Users/Users";
 import "./App";
 
 function App() {
-  let isAuth = false;
+  const isAuth = useSelector((state) => state.user.isAuth);
   const role = "";
   return (
     <Fragment>
