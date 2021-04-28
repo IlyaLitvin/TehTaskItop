@@ -7,3 +7,19 @@ const addProfileError = createAction("/addProfileError");
 const deleteProfileRequest = createAction("/deleteProfileRequest");
 const deleteProfileSuccess = createAction("/deleteProfileSuccess");
 const deleteProfileError = createAction("/deleteProfileError");
+
+const getProfilesRequest = createAction("/getProfilesRequest");
+const getProfilesSuccess = createAction("/getProfilesSuccess");
+const getProfilesError = createAction("/getProfilesError");
+
+export default {
+  addProfileRequest,
+  addProfileSuccess,
+  addProfileError,
+  deleteProfileRequest,
+  deleteProfileSuccess,
+  deleteProfileError,
+  getProfilesRequest,
+  getProfilesSuccess,
+  getProfilesError,
+};
