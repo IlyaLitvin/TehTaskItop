@@ -1,0 +1,13 @@
+.createBox {
+  width: 320px;
+  height: 298px;
+
+  background: rgba(255, 255, 255, 0.5);
+
+  border: 1px solid #d6d8e7;
+  box-sizing: border-box;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

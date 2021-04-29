@@ -1,12 +1,15 @@
 import axios from "axios";
 import authAction from "./authAction";
 import routes from "../routes";
+import jwt_decode from "jwt-decode";
 
 const url = "http://localhost:8080/api/user";
 
 const token = {
   set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
+      "token"
+    )}`;
   },
   unset() {
     axios.defaults.headers.common.Authorization = "";
@@ -21,7 +24,10 @@ const registration = (data) => (dispatch) => {
         "Content-Type": "application/json",
       },
     })
-    .then(({ data }) => dispatch(authAction.registrationSuccess(data)))
+    .then(({ data }) => {
+      localStorage.setItem("token", data.token);
+      dispatch(authAction.registrationSuccess(data));
+    })
     .catch((err) =>
       dispatch(authAction.registrationError(err), alert(err.response.data))
     );
@@ -35,9 +41,9 @@ const login = (data) => (dispatch) => {
         "Content-Type": "application/json",
       },
     })
-    .then((res) => {
-      token.set(res.data.token);
-      dispatch(authAction.loginSuccess(res.data));
+    .then(({ data }) => {
+      localStorage.setItem("token", data.token);
+      dispatch(authAction.loginSuccess(data));
     })
     .catch((err) =>
       dispatch(authAction.logoutError(err), alert(err.response.data))
@@ -50,7 +56,6 @@ const logOut = () => (dispatch) => {
   axios
     .post(`${url}/logout`)
     .then(() => {
-      token.unset();
       dispatch(authAction.logoutSuccess());
     })
     .catch((error) => dispatch(authAction.logoutError(error)));

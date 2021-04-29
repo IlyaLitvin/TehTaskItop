@@ -1,25 +1,47 @@
 import React, { useState } from "react";
 import NavBar from "../../components/NavBar";
-import { useDispatch, useSelector } from "react-redux";
+import { Container, Button } from "react-bootstrap";
+import styles from "./Profiles.module.css";
+import Modal from "../../components/ProfilesModal";
+import { useSelector } from "react-redux";
 
 export default function Profiles() {
-  const dispatch = useDispatch();
-  const token = useSelector((state) => state.user.token);
+  const [modalVisible, setModalVisible] = useState(false);
   const profiles = useSelector((state) => state.profiles);
 
-  const addProfile = (e) => {
-    e.preventDefault();
-    dispatch();
-  };
+  if (profiles) {
+    profiles.map((el, index) => {
+      return (
+        <div key={index}>
+          <p>{el.name}</p>
+          <p>{el.gender}</p>
+          <p>{el.bithdate}</p>
+          <p>{el.city}</p>
+          <button type="button">edit</button>
+          <button type="button">delete</button>
+        </div>
+      );
+    });
+  }
 
   return (
-    <div>
+    <>
       <NavBar />
-      <h2>Profiles:</h2>
-      <div>
-        <button type="button">+</button>
-        <h4>Create new profile</h4>
-      </div>
-    </div>
+      <Container className="d-flex flex-wrap-wrap">
+        <h2>Profiles:</h2>
+        <div>{profiles}</div>
+        <div className={styles.createBox}>
+          <Button
+            variant={"outline-dark"}
+            type="button"
+            onClick={() => setModalVisible(true)}
+          >
+            +
+          </Button>
+          <h4>Create new profile</h4>
+        </div>
+        <Modal show={modalVisible} onHide={() => setModalVisible(false)} />
+      </Container>
+    </>
   );
 }
