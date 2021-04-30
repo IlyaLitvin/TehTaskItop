@@ -9,19 +9,19 @@ export default function ProfilesModal({ show, onHide }) {
   const token = useSelector((state) => state.user.token);
 
   const addProfile = (e) => {
-    console.log(e);
     e.preventDefault();
-    dispatch(
-      profilesOperations.addProfile(
-        {
-          name: e.target.name.value,
-          gender: e.target.gender.value,
-          birthdate: e.target.birthdate.value,
-          city: e.target.city.value,
-        },
-        token
-      )
-    );
+    console.log(e);
+    // dispatch(
+    //   profilesOperations.addProfile(
+    //     {
+    //       name: e.target.name.value,
+    //       gender: e.target.gender.value,
+    //       birthdate: e.target.birthdate.value,
+    //       city: e.target.city.value,
+    //     },
+    //     token
+    //   )
+    // );
   };
 
   return (
@@ -68,14 +68,13 @@ export default function ProfilesModal({ show, onHide }) {
               </div>
             </div>
           </div>
+          <Button variant="outline-success">\/</Button>
+          <Button variant="outline-danger" onClick={onHide}>
+            X
+          </Button>
         </Form>
-        <Button variant="outline-success" onClick={addProfile}>
-          \/
-        </Button>
-        <Button variant="outline-danger" onClick={onHide}>
-          X
-        </Button>
       </Modal.Body>
+
       <Modal.Footer></Modal.Footer>
     </Modal>
   );

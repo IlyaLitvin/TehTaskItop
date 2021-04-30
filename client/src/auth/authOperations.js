@@ -7,9 +7,7 @@ const url = "http://localhost:8080/api/user";
 
 const token = {
   set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
-      "token"
-    )}`;
+    axios.defaults.headers.common.Authorization = `Bearer ${token}}`;
   },
   unset() {
     axios.defaults.headers.common.Authorization = "";
@@ -42,6 +40,7 @@ const login = (data) => (dispatch) => {
       },
     })
     .then(({ data }) => {
+      token.set(data.token);
       localStorage.setItem("token", data.token);
       dispatch(authAction.loginSuccess(data));
     })
@@ -56,6 +55,7 @@ const logOut = () => (dispatch) => {
   axios
     .post(`${url}/logout`)
     .then(() => {
+      token.unset();
       dispatch(authAction.logoutSuccess());
     })
     .catch((error) => dispatch(authAction.logoutError(error)));
