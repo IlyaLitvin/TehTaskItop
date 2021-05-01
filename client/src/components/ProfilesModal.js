@@ -11,23 +11,23 @@ export default function ProfilesModal({ show, onHide }) {
   const addProfile = (e) => {
     e.preventDefault();
     console.log(e);
-    // dispatch(
-    //   profilesOperations.addProfile(
-    //     {
-    //       name: e.target.name.value,
-    //       gender: e.target.gender.value,
-    //       birthdate: e.target.birthdate.value,
-    //       city: e.target.city.value,
-    //     },
-    //     token
-    //   )
-    // );
+    dispatch(
+      profilesOperations.addProfile(
+        {
+          name: e.target.name.value,
+          gender: e.target.gender.value,
+          birthdate: e.target.birthdate.value,
+          city: e.target.city.value,
+        },
+        token
+      )
+    );
   };
 
   return (
     <Modal show={show} onHide={onHide} centered>
       <Modal.Body>
-        <Form onSubmit={addProfile}>
+        <form onSubmit={addProfile}>
           <div>
             <div className="input-group mb-3">
               <div className="input-group mb-3">
@@ -68,11 +68,14 @@ export default function ProfilesModal({ show, onHide }) {
               </div>
             </div>
           </div>
-          <Button variant="outline-success">\/</Button>
+          <hr />
+          <Button variant="outline-success" type="submit">
+            \/
+          </Button>
           <Button variant="outline-danger" onClick={onHide}>
             X
           </Button>
-        </Form>
+        </form>
       </Modal.Body>
 
       <Modal.Footer></Modal.Footer>

@@ -1,13 +1,11 @@
 import axios from "axios";
 import authAction from "./authAction";
-import routes from "../routes";
-import jwt_decode from "jwt-decode";
 
 const url = "http://localhost:8080/api/user";
 
 const token = {
   set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}}`;
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
   unset() {
     axios.defaults.headers.common.Authorization = "";
@@ -61,37 +59,4 @@ const logOut = () => (dispatch) => {
     .catch((error) => dispatch(authAction.logoutError(error)));
 };
 
-const getAllUsers = (data, token) => (dispatch) => {
-  dispatch(authAction.getAllUsersRequest());
-  axios
-    .get(`${url}/users`, data, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then(({ data }) => {
-      console.log(data);
-      dispatch(authAction.getAllUsersSuccess(data));
-    })
-    .catch((error) =>
-      dispatch(authAction.getAllUsersError(error), alert(error.response.data))
-    );
-};
-
-const getUser = (data, token) => (dispatch) => {
-  dispatch(authAction.getUserRequest());
-  axios
-    .get(`${url}/users/${data.id}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then(({ data }) => dispatch(authAction.getUserSuccess(data)))
-    .catch((error) =>
-      dispatch(authAction.getUserError(error), alert(error.response.data))
-    );
-};
-
-export default { registration, login, logOut, getAllUsers, getUser };
+export default { registration, login, logOut };
