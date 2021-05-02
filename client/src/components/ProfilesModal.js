@@ -10,7 +10,6 @@ export default function ProfilesModal({ show, onHide }) {
 
   const addProfile = (e) => {
     e.preventDefault();
-    console.log(e);
     dispatch(
       profilesOperations.addProfile(
         {

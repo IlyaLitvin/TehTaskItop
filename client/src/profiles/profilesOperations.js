@@ -1,7 +1,7 @@
 import axios from "axios";
 import profilesActions from "./profilesActions";
 
-const url = "http://kapusta.fun/api/user/profile";
+const url = "http://localhost:8080/api/user/profiles";
 
 axios.default.baseURL = url;
 
@@ -14,7 +14,9 @@ const addProfile = (data, token) => (dispatch) => {
         Authorization: `Bearer ${token}`,
       },
     })
-    .then(({ data }) => dispatch(profilesActions.addProfileSuccess(data)))
+    .then((data) => {
+      dispatch(profilesActions.addProfileSuccess(data));
+    })
     .catch((error) => dispatch(profilesActions.addProfileError(error)));
 };
 
@@ -32,17 +34,16 @@ const deleteProfile = (data, token) => (dispatch) => {
     .catch((error) => dispatch(profilesActions.deleteProfileError(error)));
 };
 
-const getProfiles = (data, token) => (dispatch) => {
-  console.log(data);
+const getProfiles = (token) => (dispatch) => {
   dispatch(profilesActions.getProfilesRequest());
   axios
-    .get(`${url}/${data.id}`, {
+    .get(`${url}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     })
-    .then((data) => dispatch(profilesActions.getProfilesSuccess(data)))
+    .then(({ data }) => dispatch(profilesActions.getProfilesSuccess(data)))
     .catch((error) => dispatch(profilesActions.getProfilesError(error)));
 };
 

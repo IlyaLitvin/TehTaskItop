@@ -10,6 +10,7 @@ function NavBar() {
   const role = useSelector((state) => state.user.role);
   const history = useHistory();
   const dispatch = useDispatch();
+
   const logOut = () => {
     dispatch(authOperations.logOut());
   };

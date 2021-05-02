@@ -1,3 +1,5 @@
+import { createAction } from "@reduxjs/toolkit";
+
 const getUserRequest = createAction("/getUserRequest");
 const getUserSuccess = createAction("/getUserSuccess");
 const getUserError = createAction("/getUserError");

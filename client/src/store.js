@@ -26,16 +26,20 @@ const defaultMiddleware = getDefaultMiddleware({
 const authPersistConfig = {
   key: "user",
   storage,
-  whitelist: ["user"],
+  whitelist: ["token", "isAuth", "role", "email"],
 };
 
-// const reducers = combineReducers({
-
-// });
+const reducers = combineReducers({
+  user: persistReducer(authPersistConfig, authReducer),
+  profiles: profilesRudecer,
+});
 
 export const store = configureStore({
-  reducer: persistReducer(authPersistConfig, authReducer),
+  reducer: reducers,
   middleware: [...defaultMiddleware],
+  devTools:
+    window.__REDUX_DEVTOOLS_EXTENSION__ &&
+    window.__REDUX_DEVTOOLS_EXTENSION__(),
 });
 
 export const persistor = persistStore(store);
