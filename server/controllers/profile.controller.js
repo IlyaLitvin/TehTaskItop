@@ -31,10 +31,9 @@ async function getAllProfiles(req, res) {
       }
     }
     const getProfiles = await Profile.findAll({
-      where: { userId: id },
       attributes: ["id", "name", "gender", "birthdate", "city"],
     });
-    res.status(200).json({ getProfiles });
+    res.status(200).json(getProfiles);
   } catch (error) {
     res.status(404).send(error.message);
   }
