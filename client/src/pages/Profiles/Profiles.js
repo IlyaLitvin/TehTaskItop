@@ -8,9 +8,7 @@ import profilesOperations from "../../profiles/profilesOperations";
 
 export default function Profiles() {
   const [modalVisible, setModalVisible] = useState(false);
-  const getProfiles = useSelector((state) => state.profiles.allProfiles);
-  // const { profiles } = getProfiles;
-  console.log(getProfiles);
+  const getProfiles = useSelector((state) => state.profiles);
   const token = useSelector((state) => state.user.token);
   const dispatch = useDispatch();
 
@@ -18,27 +16,38 @@ export default function Profiles() {
     dispatch(profilesOperations.getProfiles(token));
   }, [dispatch]);
 
-  // if (profiles) {
-  //   profiles.map((el, index) => {
-  //     return (
-  //       <div key={index}>
-  //         <p>{el.name}</p>
-  //         <p>{el.gender}</p>
-  //         <p>{el.bithdate}</p>
-  //         <p>{el.city}</p>
-  //         <button type="button">edit</button>
-  //         <button type="button">delete</button>
-  //       </div>
-  //     );
-  //   });
-  // }
+  const updateProfile = () => {};
+  const deleteProfile = (e) => {
+    e.preventDefault();
+    dispatch(profilesOperations.deleteProfile(token));
+  };
+
+  let data;
+  if (getProfiles !== []) {
+    data = getProfiles.map((el, index) => {
+      return (
+        <div key={index} className={styles.createBox}>
+          <p>{el.name}</p>
+          <p>{el.gender}</p>
+          <p>{el.bithdate}</p>
+          <p>{el.city}</p>
+          <button type="button" onClick={() => updateProfile}>
+            edit
+          </button>
+          <button type="button" onClick={() => deleteProfile}>
+            delete
+          </button>
+        </div>
+      );
+    });
+  }
 
   return (
     <>
       <NavBar />
       <Container className="d-flex flex-wrap-wrap">
         <h2>Profiles:</h2>
-        {/* <div>{profiles.map((profile) => console.log(profile))}</div> */}
+        <div>{data}</div>
         <div className={styles.createBox}>
           <Button
             variant={"outline-dark"}

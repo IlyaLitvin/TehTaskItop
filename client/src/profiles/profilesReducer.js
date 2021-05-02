@@ -3,11 +3,11 @@ import initState from "../initState";
 import profilesActions from "./profilesActions";
 
 const profilesReducer = createReducer(initState.profiles, {
-  [profilesActions.getProfilesSuccess]: (state, { payload }) => {
-    return { ...state, allProfiles: payload };
+  [profilesActions.getProfilesSuccess]: (_, { payload }) => {
+    return payload;
   },
   [profilesActions.addProfileSuccess]: (state, { payload }) => {
-    return { ...state, profiles: [...state.profiles, ...[payload.profiles]] };
+    return payload.data;
   },
   [profilesActions.deleteProfileSuccess]: (state, { payload }) => {
     return {

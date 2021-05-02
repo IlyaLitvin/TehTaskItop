@@ -14,15 +14,12 @@ const addProfile = (data, token) => (dispatch) => {
         Authorization: `Bearer ${token}`,
       },
     })
-    .then((data) => {
-      dispatch(profilesActions.addProfileSuccess(data));
-    })
+    .then(({ data }) => dispatch(profilesActions.addProfileSuccess(data)))
     .catch((error) => dispatch(profilesActions.addProfileError(error)));
 };
 
 const deleteProfile = (data, token) => (dispatch) => {
   dispatch(profilesActions.deleteProfileRequest());
-
   axios
     .delete(`${url}/${data.id}`, {
       headers: {

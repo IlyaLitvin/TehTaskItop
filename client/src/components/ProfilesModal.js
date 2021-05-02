@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
-import { Button, Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import profilesOperations from "../profiles/profilesOperations";
 
@@ -21,6 +21,8 @@ export default function ProfilesModal({ show, onHide }) {
         token
       )
     );
+    onHide();
+    dispatch(profilesOperations.getProfiles(token));
   };
 
   return (
