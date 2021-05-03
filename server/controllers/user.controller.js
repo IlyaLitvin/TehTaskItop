@@ -111,9 +111,9 @@ async function userLogout(req, res) {
 async function getAllUsers(req, res) {
   try {
     const user = await User.findAll({
-      attributes: ["id", "email", "role", "profiles"],
+      attributes: ["id", "email", "role", "allProfiles"],
     });
-    res.status(200).json({ user });
+    res.status(200).json(user);
   } catch (error) {
     console.log(error);
   }
