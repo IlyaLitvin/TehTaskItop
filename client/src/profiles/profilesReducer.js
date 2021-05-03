@@ -15,6 +15,10 @@ const profilesReducer = createReducer(initState.profiles, {
       profiles: state.profiles.filter(({ id }) => id !== payload),
     };
   },
+  [profilesActions.updateProfileSuccess]: (state, { payload }) => ({
+    ...state,
+    ...payload,
+  }),
 });
 
 export default profilesReducer;

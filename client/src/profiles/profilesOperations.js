@@ -44,4 +44,17 @@ const getProfiles = (token) => (dispatch) => {
     .catch((error) => dispatch(profilesActions.getProfilesError(error)));
 };
 
-export default { addProfile, deleteProfile, getProfiles };
+const updateProfile = (data, token) => (dispatch) => {
+  dispatch(profilesActions.updateProfileRequest());
+  axios
+    .patch(`${url}/update/${data.id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(({ data }) => dispatch(profilesActions.updateProfileSuccess(data)))
+    .catch((error) => dispatch(profilesActions.updateProfileError(error)));
+};
+
+export default { addProfile, deleteProfile, getProfiles, updateProfile };

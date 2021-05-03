@@ -8,10 +8,10 @@ export default function ProfilesModal({ show, onHide }) {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.user.token);
 
-  const addProfile = (e) => {
+  const newProfile = (e) => {
     e.preventDefault();
     dispatch(
-      profilesOperations.addProfile(
+      profilesOperations.updateProfile(
         {
           name: e.target.name.value,
           gender: e.target.gender.value,
@@ -28,7 +28,7 @@ export default function ProfilesModal({ show, onHide }) {
   return (
     <Modal show={show} onHide={onHide} centered>
       <Modal.Body>
-        <form onSubmit={addProfile}>
+        <form onSubmit={newProfile}>
           <div>
             <div className="input-group mb-3">
               <div className="input-group mb-3">

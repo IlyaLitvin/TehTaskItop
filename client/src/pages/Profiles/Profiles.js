@@ -16,9 +16,6 @@ export default function Profiles() {
     dispatch(profilesOperations.getProfiles(token));
   }, [dispatch]);
 
-  const updateProfile = (e) => {
-    dispatch();
-  };
   const deleteProfile = (e) => {
     dispatch(profilesOperations.deleteProfile(e, token));
   };
@@ -32,7 +29,7 @@ export default function Profiles() {
           <p>{el.gender}</p>
           <p>{el.birthdate}</p>
           <p>{el.city}</p>
-          <button type="button" onClick={() => updateProfile}>
+          <button type="button" onClick={() => setModalVisible(true)}>
             edit
           </button>
           <button type="button" onClick={() => deleteProfile(el.id)}>
@@ -59,6 +56,7 @@ export default function Profiles() {
           </Button>
           <h4>Create new profile</h4>
         </div>
+        <Modal show={modalVisible} onHide={() => setModalVisible(false)} />
         <Modal show={modalVisible} onHide={() => setModalVisible(false)} />
       </Container>
     </>

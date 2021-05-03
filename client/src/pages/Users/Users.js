@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import NavBar from "../../components/NavBar";
 import userOperations from "../../user/userOperations";
-import styles from "../Profiles/Profiles.module.css";
+import styles from "./users.module.css";
 import { NavLink } from "react-router-dom";
 
 export default function Users() {
@@ -18,8 +18,8 @@ export default function Users() {
   if (getUsers) {
     data = getUsers.map((el, index) => {
       return (
-        <NavLink to="/" key={index} className={styles.createBox}>
-          <div>
+        <NavLink to="/" key={index}>
+          <div className={styles.userInfoWrapper}>
             <p>{el.role}</p>
             <p>{el.email}</p>
             <p>{el.allProfiles} profiles</p>

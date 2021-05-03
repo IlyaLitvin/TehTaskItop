@@ -12,6 +12,10 @@ const getProfilesRequest = createAction("/getProfilesRequest");
 const getProfilesSuccess = createAction("/getProfilesSuccess");
 const getProfilesError = createAction("/getProfilesError");
 
+const updateProfileRequest = createAction("/updateProfileRequest");
+const updateProfileSuccess = createAction("/updateProfileSuccess");
+const updateProfileError = createAction("/updateProfileError");
+
 export default {
   addProfileRequest,
   addProfileSuccess,
@@ -22,4 +26,7 @@ export default {
   getProfilesRequest,
   getProfilesSuccess,
   getProfilesError,
+  updateProfileRequest,
+  updateProfileSuccess,
+  updateProfileError,
 };
