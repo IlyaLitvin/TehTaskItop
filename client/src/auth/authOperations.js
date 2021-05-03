@@ -49,7 +49,6 @@ const login = (data) => (dispatch) => {
 
 const logOut = () => (dispatch) => {
   dispatch(authAction.logoutRequest());
-
   axios
     .post(`${url}/logout`)
     .then(() => {

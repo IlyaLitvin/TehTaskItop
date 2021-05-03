@@ -17,6 +17,7 @@ import storage from "redux-persist/lib/storage";
 import authReducer from "./auth/authReducer";
 import profilesRudecer from "./profiles/profilesReducer";
 import usersReducer from "./user/userReducer";
+import dashboardReducer from "./user/dashboardReducer";
 
 const defaultMiddleware = getDefaultMiddleware({
   serializableCheck: {
@@ -34,6 +35,7 @@ const reducers = combineReducers({
   user: persistReducer(authPersistConfig, authReducer),
   profiles: profilesRudecer,
   users: usersReducer,
+  dashboard: dashboardReducer,
 });
 
 export const store = configureStore({

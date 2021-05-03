@@ -4,13 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import dashboardOperations from "../../user/dashboardOperations";
 
 export default function Dashboard() {
-  // const users = useSelector((state) => state.dashboard.users);
-  // const profiles = useSelector((state) => state.dashboard.profiles);
-  // const oldProfiles = useSelector((state) => state.dashboard.oldProfiles);
+  const dispatch = useDispatch();
   const token = useSelector((state) => state.user.token);
   const getDashboard = useSelector((state) => state.dashboard);
-  console.log(getDashboard);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(dashboardOperations.getInfo(token));
@@ -19,11 +15,11 @@ export default function Dashboard() {
   return (
     <div>
       <NavBar />
-      {/* <div className="users">Users:{users}</div>
-      <div className="profiles">Profiles:{profiles}</div>
+      <div className="users">Users:{getDashboard.users}</div>
+      <div className="profiles">Profiles:{getDashboard.profiles}</div>
       <div className="oldProfiles">
-        Profiles over 18 years old:{oldProfiles}
-      </div> */}
+        Profiles over 18 years old:{getDashboard.oldProfiles}
+      </div>
     </div>
   );
 }

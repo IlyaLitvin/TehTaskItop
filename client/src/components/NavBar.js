@@ -8,6 +8,7 @@ import authOperations from "../auth/authOperations";
 
 function NavBar() {
   const role = useSelector((state) => state.user.role);
+  const user = useSelector((state) => state.user);
   const history = useHistory();
   const dispatch = useDispatch();
 

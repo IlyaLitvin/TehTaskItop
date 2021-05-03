@@ -12,10 +12,10 @@ export default function Users() {
 
   useEffect(() => {
     dispatch(userOperations.getAllUsers(token));
-  }, [dispatch]);
+  }, []);
 
   let data;
-  if (getUsers !== []) {
+  if (getUsers) {
     data = getUsers.map((el, index) => {
       return (
         <NavLink to="/" key={index} className={styles.createBox}>

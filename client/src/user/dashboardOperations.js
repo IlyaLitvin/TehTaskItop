@@ -1,10 +1,10 @@
 import axios from "axios";
-import userActions from "./userActions";
+import dashboardActions from "./dashboardActions";
 
 const url = "http://localhost:8080/api/user";
 
 const getInfo = (token) => (dispatch) => {
-  dispatch(userActions.getUsersInfoRequest());
+  dispatch(dashboardActions.getUsersInfoRequest());
   axios
     .get(`${url}/dashboard`, {
       headers: {
@@ -12,8 +12,8 @@ const getInfo = (token) => (dispatch) => {
         Authorization: `Bearer ${token}`,
       },
     })
-    .then(({ data }) => dispatch(userActions.getUsersInfoSuccess(data)))
-    .catch((error) => dispatch(userActions.getUsersInfoError(error)));
+    .then(({ data }) => dispatch(dashboardActions.getUsersInfoSuccess(data)))
+    .catch((error) => dispatch(dashboardActions.getUsersInfoError(error)));
 };
 
 export default { getInfo };
