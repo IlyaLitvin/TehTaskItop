@@ -18,16 +18,16 @@ const addProfile = (data, token) => (dispatch) => {
     .catch((error) => dispatch(profilesActions.addProfileError(error)));
 };
 
-const deleteProfile = (data, token) => (dispatch) => {
+const deleteProfile = (id, token) => (dispatch) => {
   dispatch(profilesActions.deleteProfileRequest());
   axios
-    .delete(`${url}/${data.id}`, {
+    .delete(`${url}/delete/${id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     })
-    .then(({ data }) => dispatch(profilesActions.deleteProfileSuccess(data)))
+    .then(() => dispatch(profilesActions.deleteProfileSuccess(id)))
     .catch((error) => dispatch(profilesActions.deleteProfileError(error)));
 };
 

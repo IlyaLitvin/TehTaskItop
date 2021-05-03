@@ -16,10 +16,11 @@ export default function Profiles() {
     dispatch(profilesOperations.getProfiles(token));
   }, [dispatch]);
 
-  const updateProfile = () => {};
+  const updateProfile = (e) => {
+    dispatch();
+  };
   const deleteProfile = (e) => {
-    e.preventDefault();
-    dispatch(profilesOperations.deleteProfile(token));
+    dispatch(profilesOperations.deleteProfile(e, token));
   };
 
   let data;
@@ -29,12 +30,12 @@ export default function Profiles() {
         <div key={index} className={styles.createBox}>
           <p>{el.name}</p>
           <p>{el.gender}</p>
-          <p>{el.bithdate}</p>
+          <p>{el.birthdate}</p>
           <p>{el.city}</p>
           <button type="button" onClick={() => updateProfile}>
             edit
           </button>
-          <button type="button" onClick={() => deleteProfile}>
+          <button type="button" onClick={() => deleteProfile(el.id)}>
             delete
           </button>
         </div>

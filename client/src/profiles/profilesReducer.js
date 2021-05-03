@@ -6,13 +6,13 @@ const profilesReducer = createReducer(initState.profiles, {
   [profilesActions.getProfilesSuccess]: (_, { payload }) => {
     return payload;
   },
-  [profilesActions.addProfileSuccess]: (state, { payload }) => {
+  [profilesActions.addProfileSuccess]: (_, { payload }) => {
     return payload.data;
   },
   [profilesActions.deleteProfileSuccess]: (state, { payload }) => {
     return {
       ...state,
-      profiles: state.costs.filter(({ id }) => id !== payload.id),
+      profiles: state.profiles.filter(({ id }) => id !== payload),
     };
   },
 });

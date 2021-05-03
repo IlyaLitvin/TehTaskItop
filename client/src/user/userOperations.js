@@ -3,19 +3,16 @@ import userActions from "./userActions";
 
 const url = "http://localhost:8080/api/user";
 
-const getAllUsers = (data, token) => (dispatch) => {
+const getAllUsers = (token) => (dispatch) => {
   dispatch(userActions.getAllUsersRequest());
   axios
-    .get(`${url}/users`, data, {
+    .get(`${url}/users`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     })
-    .then(({ data }) => {
-      console.log(data);
-      dispatch(userActions.getAllUsersSuccess(data));
-    })
+    .then(({ data }) => dispatch(userActions.getAllUsersSuccess(data)))
     .catch((error) =>
       dispatch(userActions.getAllUsersError(error), alert(error.response.data))
     );
@@ -49,17 +46,4 @@ const getUser = (data, token) => (dispatch) => {
     );
 };
 
-const getInfo = (data, token) => (dispatch) => {
-  dispatch(userActions.getUsersInfoRequest());
-  axios
-    .get(`${url}/dashboard`, data, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((data) => dispatch(userActions.getUsersInfoSuccess(data)))
-    .catch((error) => dispatch(userActions.getUsersInfoError(error)));
-};
-
-export default { getAllUsers, getUser, getInfo, deleteUser };
+export default { getAllUsers, getUser, deleteUser };

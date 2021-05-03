@@ -43,7 +43,11 @@ function NavBar() {
             >
               Users
             </Button>
-            <Button variant={"outline-light"} className="ml-5" onClick={logOut}>
+            <Button
+              variant={"outline-light"}
+              className="ml-5"
+              onClick={() => logOut()}
+            >
               Log out
             </Button>
           </Nav>
