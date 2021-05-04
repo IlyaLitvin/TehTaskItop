@@ -29,6 +29,12 @@ router.get(
   userController.getAllUsers
 );
 router.get(
+  "/users/:id",
+  authController.authorize,
+  authController.checkRole,
+  userController.getCurrentUser
+);
+router.get(
   "/dashboard",
   authController.authorize,
   authController.checkRole,

@@ -119,6 +119,21 @@ async function getAllUsers(req, res) {
   }
 }
 
+async function getCurrentUser(req, res) {
+  try {
+    const {
+      params: { id },
+    } = req;
+    const user = await User.findOne({ where: { id: id } });
+    if (!user) {
+      res.status(404).send({ message: "User isn't found" });
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 const getBirthday = function (arr) {
   let count = 0;
   const nowyear = new Date().getFullYear();
@@ -172,5 +187,6 @@ module.exports = {
   deleteUser,
   userLogout,
   getAllUsers,
+  getCurrentUser,
   getInfo,
 };
