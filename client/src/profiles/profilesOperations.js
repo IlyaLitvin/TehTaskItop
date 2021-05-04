@@ -14,11 +14,14 @@ const addProfile = (data, token) => (dispatch) => {
         Authorization: `Bearer ${token}`,
       },
     })
-    .then(({ data }) => dispatch(profilesActions.addProfileSuccess(data)))
+    .then(({ data }) =>
+      dispatch(profilesActions.addProfileSuccess(data.profile))
+    )
     .catch((error) => dispatch(profilesActions.addProfileError(error)));
 };
 
 const deleteProfile = (id, token) => (dispatch) => {
+  // console.log("data:", data, "token: ", token, "id: ", id);
   dispatch(profilesActions.deleteProfileRequest());
   axios
     .delete(`${url}/delete/${id}`, {
@@ -27,7 +30,11 @@ const deleteProfile = (id, token) => (dispatch) => {
         Authorization: `Bearer ${token}`,
       },
     })
-    .then(() => dispatch(profilesActions.deleteProfileSuccess(id)))
+    .then((res) => {
+      console.log(res);
+      console.log(profilesActions.deleteProfileSuccess);
+      dispatch(profilesActions.deleteProfileSuccess(id));
+    })
     .catch((error) => dispatch(profilesActions.deleteProfileError(error)));
 };
 
@@ -44,16 +51,17 @@ const getProfiles = (token) => (dispatch) => {
     .catch((error) => dispatch(profilesActions.getProfilesError(error)));
 };
 
-const updateProfile = (data, token) => (dispatch) => {
+const updateProfile = ({ data, id }) => (dispatch, getState) => {
+  const token = getState().user.token;
   dispatch(profilesActions.updateProfileRequest());
   axios
-    .patch(`${url}/update/${data.id}`, {
+    .patch(`${url}/update/${id}`, data, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     })
-    .then(({ data }) => dispatch(profilesActions.updateProfileSuccess(data)))
+    .then(() => dispatch(profilesActions.updateProfileSuccess({ ...data, id })))
     .catch((error) => dispatch(profilesActions.updateProfileError(error)));
 };
 

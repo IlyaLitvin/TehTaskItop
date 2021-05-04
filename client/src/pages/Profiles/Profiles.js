@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import NavBar from "../../components/NavBar";
 import { Container, Button } from "react-bootstrap";
 import styles from "./Profiles.module.css";
-import Modal from "../../components/ProfilesModal";
+import ProfilesModal from "../../components/ProfilesModal";
 import { useSelector, useDispatch } from "react-redux";
 import profilesOperations from "../../profiles/profilesOperations";
 
 export default function Profiles() {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState({
+    isModalOpen: false,
+    id: "",
+  });
   const getProfiles = useSelector((state) => state.profiles);
   const token = useSelector((state) => state.user.token);
   const dispatch = useDispatch();
@@ -21,7 +24,7 @@ export default function Profiles() {
   };
 
   let data;
-  if (getProfiles !== []) {
+  if (getProfiles.length >= 1) {
     data = getProfiles.map((el, index) => {
       return (
         <div key={index} className={styles.createBox}>
@@ -29,7 +32,10 @@ export default function Profiles() {
           <p>{el.gender}</p>
           <p>{el.birthdate}</p>
           <p>{el.city}</p>
-          <button type="button" onClick={() => setModalVisible(true)}>
+          <button
+            type="button"
+            onClick={() => setModalVisible({ isModalOpen: true, id: el.id })}
+          >
             edit
           </button>
           <button type="button" onClick={() => deleteProfile(el.id)}>
@@ -50,14 +56,16 @@ export default function Profiles() {
           <Button
             variant={"outline-dark"}
             type="button"
-            onClick={() => setModalVisible(true)}
+            onClick={() => setModalVisible({ isModalOpen: true })}
           >
             +
           </Button>
           <h4>Create new profile</h4>
         </div>
-        <Modal show={modalVisible} onHide={() => setModalVisible(false)} />
-        <Modal show={modalVisible} onHide={() => setModalVisible(false)} />
+        <ProfilesModal
+          modalOptions={modalVisible}
+          onHide={() => setModalVisible({ isModalOpen: false })}
+        />
       </Container>
     </>
   );

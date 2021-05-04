@@ -13,6 +13,7 @@ import {
   REHYDRATE,
   REGISTER,
 } from "redux-persist";
+import thunk from "redux-thunk";
 import storage from "redux-persist/lib/storage";
 import authReducer from "./auth/authReducer";
 import profilesRudecer from "./profiles/profilesReducer";
@@ -40,16 +41,10 @@ const reducers = combineReducers({
 
 export const store = configureStore({
   reducer: reducers,
-  middleware: [...defaultMiddleware],
+  middleware: [...defaultMiddleware, thunk],
   devTools:
     window.__REDUX_DEVTOOLS_EXTENSION__ &&
     window.__REDUX_DEVTOOLS_EXTENSION__(),
 });
 
 export const persistor = persistStore(store);
-
-// const store = configureStore({
-//   reducer: authReducer,
-// });
-
-// export default store;

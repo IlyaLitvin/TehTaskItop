@@ -15,7 +15,7 @@ export default function Users() {
   }, []);
 
   let data;
-  if (getUsers) {
+  if (getUsers.length >= 1) {
     data = getUsers.map((el, index) => {
       return (
         <NavLink to="/" key={index}>

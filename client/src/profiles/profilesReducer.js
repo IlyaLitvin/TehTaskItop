@@ -6,19 +6,15 @@ const profilesReducer = createReducer(initState.profiles, {
   [profilesActions.getProfilesSuccess]: (_, { payload }) => {
     return payload;
   },
-  [profilesActions.addProfileSuccess]: (_, { payload }) => {
-    return payload.data;
+  [profilesActions.addProfileSuccess]: (state, { payload }) => {
+    return [...state, payload];
   },
   [profilesActions.deleteProfileSuccess]: (state, { payload }) => {
-    return {
-      ...state,
-      profiles: state.profiles.filter(({ id }) => id !== payload),
-    };
+    return state.filter(({ id }) => id !== payload);
   },
-  [profilesActions.updateProfileSuccess]: (state, { payload }) => ({
-    ...state,
-    ...payload,
-  }),
+  [profilesActions.updateProfileSuccess]: (state, { payload }) => {
+    return [...state.filter(({ id }) => id !== payload.id), payload];
+  },
 });
 
 export default profilesReducer;
