@@ -5,7 +5,7 @@ const { User, Profile } = require("../models/models");
 // const { func, function } = require("joi");
 
 const generateJwt = (id) => {
-  return jwt.sign({ id }, "~E(/]s@}};8a%|/s)ni5z_Ji+B", { expiresIn: "24h" });
+  return jwt.sign({ id }, "~E(/]s@}};8a%|/s)ni5z_Ji+B");
 };
 
 async function registration(req, res) {
@@ -57,7 +57,7 @@ async function login(req, res) {
   user.update({ token: token });
   return res
     .status(200)
-    .json({ token: token, role: user.role, email: user.email });
+    .json({ token: token, role: user.role, email: user.email, id: user.id });
 }
 
 async function updateUser(req, res) {
@@ -179,6 +179,11 @@ async function getInfo(req, res) {
   }
 }
 
+async function check(req, res) {
+  const token = generateJwt(req.user.id, req.user.email, req.user.role);
+  return res.json({ token });
+}
+
 module.exports = {
   registration,
   validationUser,
@@ -189,4 +194,5 @@ module.exports = {
   getAllUsers,
   getCurrentUser,
   getInfo,
+  check,
 };

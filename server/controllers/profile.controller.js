@@ -25,15 +25,16 @@ async function getAllProfiles(req, res) {
     const {
       params: { id },
     } = req;
-    if (+id !== req.user.id) {
-      if (req.user.role !== "ADMIN") {
-        return res.status(401).send({ message: "You haven't rights" });
-      }
-    }
+    // if (+id !== req.user.id) {
+    //   if (req.user.role !== "ADMIN") {
+    //     return res.status(401).send({ message: "You haven't rights" });
+    //   }
+    // }
     const getProfiles = await Profile.findAll({
-      attributes: ["id", "name", "gender", "birthdate", "city"],
+      attributes: ["id", "name", "gender", "birthdate", "city", "userId"],
     });
-    res.status(200).json(getProfiles);
+    const profilesFilteredById = getProfiles.filter((el) => el.userId == id);
+    res.status(200).json(profilesFilteredById);
   } catch (error) {
     res.status(404).send(error.message);
   }
