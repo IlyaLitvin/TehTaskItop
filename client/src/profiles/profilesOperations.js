@@ -37,10 +37,9 @@ const deleteProfile = (id) => (dispatch, getState) => {
 
 const getProfiles = () => (dispatch, getState) => {
   const token = getState().user.token;
-  const userId = getState().user.id;
   dispatch(profilesActions.getProfilesRequest());
   axios
-    .get(`${url}/${userId}`, {
+    .get(`${url}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -50,8 +49,9 @@ const getProfiles = () => (dispatch, getState) => {
     .catch((error) => dispatch(profilesActions.getProfilesError(error)));
 };
 
-const updateProfile = ({ data, id }) => (dispatch, getState) => {
+const updateProfile = ({ data }, id) => (dispatch, getState) => {
   const token = getState().user.token;
+  console.log(data, id);
   dispatch(profilesActions.updateProfileRequest());
   axios
     .patch(`${url}/update/${id}`, data, {
