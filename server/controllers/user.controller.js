@@ -6,7 +6,7 @@ const { User, Profile } = require("../models/models");
 
 const generateJwt = (id) => {
   return jwt.sign({ id }, "~E(/]s@}};8a%|/s)ni5z_Ji+B", {
-    expiresIn: "30 days",
+    expiresIn: "30d",
   });
 };
 

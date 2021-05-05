@@ -22,19 +22,15 @@ async function addProfile(req, res) {
 
 async function getAllProfiles(req, res) {
   try {
-    const {
-      params: { id },
-    } = req;
     // if (+id !== req.user.id) {
     //   if (req.user.role !== "ADMIN") {
     //     return res.status(401).send({ message: "You haven't rights" });
     //   }
     // }
     const getProfiles = await Profile.findAll({
-      attributes: ["id", "name", "gender", "birthdate", "city", "userId"],
+      where: { userId: req.user.id },
     });
-    const profilesFilteredById = getProfiles.filter((el) => el.userId == id);
-    res.status(200).json(profilesFilteredById);
+    res.status(200).json(getProfiles);
   } catch (error) {
     res.status(404).send(error.message);
   }
