@@ -4,6 +4,7 @@ const routes = {
   profiles: "/profiles",
   dashboard: "/dashboard",
   users: "/users",
+  currentUser: "/current",
 };
 
 export default routes;

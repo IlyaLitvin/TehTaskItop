@@ -3,7 +3,8 @@ import dashboardActions from "./dashboardActions";
 
 const url = "http://localhost:8080/api/user";
 
-const getInfo = (token) => (dispatch) => {
+const getInfo = () => (dispatch, getState) => {
+  const token = getState().user.token;
   dispatch(dashboardActions.getUsersInfoRequest());
   axios
     .get(`${url}/dashboard`, {

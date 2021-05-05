@@ -5,7 +5,8 @@ const url = "http://localhost:8080/api/user/profiles";
 
 axios.default.baseURL = url;
 
-const addProfile = (data, token) => (dispatch) => {
+const addProfile = (data) => (dispatch, getState) => {
+  const token = getState().user.token;
   dispatch(profilesActions.addProfileRequest());
   axios
     .post(`${url}/create`, data, {
@@ -20,8 +21,8 @@ const addProfile = (data, token) => (dispatch) => {
     .catch((error) => dispatch(profilesActions.addProfileError(error)));
 };
 
-const deleteProfile = (id, token) => (dispatch) => {
-  // console.log("data:", data, "token: ", token, "id: ", id);
+const deleteProfile = (id) => (dispatch, getState) => {
+  const token = getState().user.token;
   dispatch(profilesActions.deleteProfileRequest());
   axios
     .delete(`${url}/delete/${id}`, {
@@ -30,18 +31,16 @@ const deleteProfile = (id, token) => (dispatch) => {
         Authorization: `Bearer ${token}`,
       },
     })
-    .then((res) => {
-      console.log(res);
-      console.log(profilesActions.deleteProfileSuccess);
-      dispatch(profilesActions.deleteProfileSuccess(id));
-    })
+    .then(() => dispatch(profilesActions.deleteProfileSuccess(id)))
     .catch((error) => dispatch(profilesActions.deleteProfileError(error)));
 };
 
-const getProfiles = (token) => (dispatch) => {
+const getProfiles = () => (dispatch, getState) => {
+  const token = getState().user.token;
+  const userId = getState().user.id;
   dispatch(profilesActions.getProfilesRequest());
   axios
-    .get(`${url}`, {
+    .get(`${url}/${userId}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

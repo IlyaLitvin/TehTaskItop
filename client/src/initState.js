@@ -1,5 +1,6 @@
 const initState = {
   user: {
+    id: "",
     token: null,
     role: null,
     email: "",

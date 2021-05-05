@@ -12,10 +12,6 @@ const getAllUsersRequest = createAction("/getAllUsersRequest");
 const getAllUsersSuccess = createAction("/getAllUsersSuccess");
 const getAllUsersError = createAction("/getAllUsersError");
 
-const getUsersInfoRequest = createAction("/getUsersInfoRequest");
-const getUsersInfoSuccess = createAction("/getUsersInfoSuccess");
-const getUsersInfoError = createAction("/getUsersInfoError");
-
 export default {
   getUserRequest,
   getUserSuccess,
@@ -26,7 +22,4 @@ export default {
   getAllUsersRequest,
   getAllUsersSuccess,
   getAllUsersError,
-  getUsersInfoRequest,
-  getUsersInfoSuccess,
-  getUsersInfoError,
 };
