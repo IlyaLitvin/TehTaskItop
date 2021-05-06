@@ -4,10 +4,9 @@ import { NavLink } from "react-router-dom";
 import routes from "../routes";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import authOperations from "../auth/authOperations";
+import authOperations from "../http/auth/authOperations";
 
 function NavBar() {
-  const role = useSelector((state) => state.user.role);
   const user = useSelector((state) => state.user);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -18,7 +17,7 @@ function NavBar() {
 
   return (
     <Navbar bg="dark" variant="dark">
-      {role === "ADMIN" ? (
+      {user.role === "ADMIN" ? (
         <Container>
           <NavLink style={{ color: "white" }} to={routes.profiles}>
             Admin

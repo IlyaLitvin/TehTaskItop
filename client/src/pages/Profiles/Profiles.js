@@ -4,7 +4,7 @@ import { Container, Button } from "react-bootstrap";
 import styles from "./Profiles.module.css";
 import ProfilesModal from "../../components/ProfilesModal";
 import { useSelector, useDispatch } from "react-redux";
-import profilesOperations from "../../profiles/profilesOperations";
+import profilesOperations from "../../http/profiles/profilesOperations";
 import ProfileItem from "../../components/ProfileItem";
 
 export default function Profiles() {
@@ -18,7 +18,7 @@ export default function Profiles() {
 
   useEffect(() => {
     dispatch(profilesOperations.getProfiles(token));
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   const deleteProfile = (e) => {
     dispatch(profilesOperations.deleteProfile(e, token));

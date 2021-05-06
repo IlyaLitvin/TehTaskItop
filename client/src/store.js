@@ -15,10 +15,10 @@ import {
 } from "redux-persist";
 import thunk from "redux-thunk";
 import storage from "redux-persist/lib/storage";
-import authReducer from "./auth/authReducer";
-import profilesRudecer from "./profiles/profilesReducer";
-import usersReducer from "./user/userReducer";
-import dashboardReducer from "./user/dashboardReducer";
+import authReducer from "./http/auth/authReducer";
+import profilesRudecer from "./http/profiles/profilesReducer";
+import usersReducer from "./http/user/userReducer";
+import dashboardReducer from "./http/user/dashboardReducer";
 
 const defaultMiddleware = getDefaultMiddleware({
   serializableCheck: {
@@ -29,7 +29,7 @@ const defaultMiddleware = getDefaultMiddleware({
 const authPersistConfig = {
   key: "user",
   storage,
-  whitelist: ["token", "isAuth", "role", "email"],
+  whitelist: ["token", "isAuth", "role", "email", "id"],
 };
 
 const reducers = combineReducers({

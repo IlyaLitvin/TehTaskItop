@@ -1,15 +1,11 @@
-import axios from "axios";
+import { authHost } from "../index";
 import profilesActions from "./profilesActions";
-
-const url = "http://localhost:8080/api/user/profiles";
-
-axios.default.baseURL = url;
 
 const addProfile = (data) => (dispatch, getState) => {
   const token = getState().user.token;
   dispatch(profilesActions.addProfileRequest());
-  axios
-    .post(`${url}/create`, data, {
+  authHost
+    .post("/profiles/create", data, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -24,8 +20,8 @@ const addProfile = (data) => (dispatch, getState) => {
 const deleteProfile = (id) => (dispatch, getState) => {
   const token = getState().user.token;
   dispatch(profilesActions.deleteProfileRequest());
-  axios
-    .delete(`${url}/delete/${id}`, {
+  authHost
+    .delete(`/profiles/delete/${id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -38,8 +34,8 @@ const deleteProfile = (id) => (dispatch, getState) => {
 const getProfiles = () => (dispatch, getState) => {
   const token = getState().user.token;
   dispatch(profilesActions.getProfilesRequest());
-  axios
-    .get(`${url}`, {
+  authHost
+    .get("/profiles", {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -49,18 +45,19 @@ const getProfiles = () => (dispatch, getState) => {
     .catch((error) => dispatch(profilesActions.getProfilesError(error)));
 };
 
-const updateProfile = ({ data }, id) => (dispatch, getState) => {
+const updateProfile = ({ data, editId }) => (dispatch, getState) => {
   const token = getState().user.token;
-  console.log(data, id);
   dispatch(profilesActions.updateProfileRequest());
-  axios
-    .patch(`${url}/update/${id}`, data, {
+  authHost
+    .patch(`/profiles/update/${editId}`, data, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     })
-    .then(() => dispatch(profilesActions.updateProfileSuccess({ ...data, id })))
+    .then(() =>
+      dispatch(profilesActions.updateProfileSuccess({ id: editId, ...data }))
+    )
     .catch((error) => dispatch(profilesActions.updateProfileError(error)));
 };
 

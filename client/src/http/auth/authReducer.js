@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 
-import initState from "../initState";
+import initState from "../../initState";
 import authAction from "./authAction";
 
 const authReducer = createReducer(initState.user, {

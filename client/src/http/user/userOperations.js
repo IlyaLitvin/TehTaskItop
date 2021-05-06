@@ -1,13 +1,11 @@
-import axios from "axios";
+import { authHost } from "../index";
 import userActions from "./userActions";
-
-const url = "http://localhost:8080/api/user/users";
 
 const getAllUsers = () => (dispatch, getState) => {
   const token = getState().user.token;
   dispatch(userActions.getAllUsersRequest());
-  axios
-    .get(`${url}`, {
+  authHost
+    .get("/users", {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -22,8 +20,8 @@ const getAllUsers = () => (dispatch, getState) => {
 const deleteUser = (data) => (dispatch, getState) => {
   const token = getState().user.token;
   dispatch(userActions.deleteUserRequest());
-  axios
-    .delete(`${url}/${data.id}`, {
+  authHost
+    .delete(`/delete/${data.id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -33,12 +31,11 @@ const deleteUser = (data) => (dispatch, getState) => {
     .catch((error) => dispatch(userActions.deleteUserError(error)));
 };
 
-const getUser = () => (dispatch, getState) => {
+const getUser = (data) => (dispatch, getState) => {
   const token = getState().user.token;
-  const userId = getState().users.id;
   dispatch(userActions.getUserRequest());
-  axios
-    .get(`${url}/${userId}`, {
+  authHost
+    .get(`/users/${data.id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

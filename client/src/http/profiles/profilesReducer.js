@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import initState from "../initState";
+import initState from "../../initState";
 import profilesActions from "./profilesActions";
 
 const profilesReducer = createReducer(initState.profiles, {

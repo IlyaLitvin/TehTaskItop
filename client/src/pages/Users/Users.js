@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import NavBar from "../../components/NavBar";
-import userOperations from "../../user/userOperations";
+import userOperations from "../../http/user/userOperations";
 import styles from "./users.module.css";
 import { NavLink } from "react-router-dom";
 
@@ -12,7 +12,7 @@ export default function Users() {
 
   useEffect(() => {
     dispatch(userOperations.getAllUsers(token));
-  }, []);
+  }, [dispatch, token]);
 
   let data;
   if (getUsers.length >= 1) {

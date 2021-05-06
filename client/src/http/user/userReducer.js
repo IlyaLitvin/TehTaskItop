@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import userActions from "./userActions";
 
-import initState from "../initState";
+import initState from "../../initState";
 
 const userReducer = createReducer(initState.users, {
   [userActions.getAllUsersSuccess]: (_, { payload }) => payload,

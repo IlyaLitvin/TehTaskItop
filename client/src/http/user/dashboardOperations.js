@@ -1,13 +1,11 @@
-import axios from "axios";
+import { authHost } from "../index";
 import dashboardActions from "./dashboardActions";
-
-const url = "http://localhost:8080/api/user";
 
 const getInfo = () => (dispatch, getState) => {
   const token = getState().user.token;
   dispatch(dashboardActions.getUsersInfoRequest());
-  axios
-    .get(`${url}/dashboard`, {
+  authHost
+    .get("/dashboard", {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

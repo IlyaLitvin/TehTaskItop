@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import NavBar from "../../components/NavBar";
 import { useSelector, useDispatch } from "react-redux";
-import dashboardOperations from "../../user/dashboardOperations";
+import dashboardOperations from "../../http/user/dashboardOperations";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     dispatch(dashboardOperations.getInfo(token));
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   return (
     <div>

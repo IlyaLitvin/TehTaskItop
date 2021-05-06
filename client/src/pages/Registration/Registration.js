@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import css from "./Registration.module.css";
-import authOperations from "../../auth/authOperations";
+import authOperations from "../../http/auth/authOperations";
 import { useDispatch } from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
 import routes from "../../routes";

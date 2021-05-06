@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import profilesOperations from "../profiles/profilesOperations";
+import profilesOperations from "../http/profiles/profilesOperations";
 
 const dataUserInit = {
   name: "",
@@ -40,7 +40,7 @@ export default function ProfilesModal({ modalOptions, onHide }) {
       const { id, ...rest } = editProfile;
       setUserData({ ...rest });
     }
-  }, [editId]);
+  }, [editId, profiles]);
 
   return (
     <Modal show={isModalOpen} onHide={onHide} centered>
