@@ -7,6 +7,7 @@ import Login from "./pages/Login/Login";
 import Profiles from "./pages/Profiles/Profiles";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Users from "./pages/Users/Users";
+import User from "./pages/User/User";
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -27,6 +28,9 @@ function App() {
           )}
           {user.role === "ADMIN" && (
             <Route exact path="/users" component={Users} />
+          )}
+          {user.role === "ADMIN" && (
+            <Route exact path="/users/:id" component={User} />
           )}
           <Redirect to="/profiles" />
         </Switch>

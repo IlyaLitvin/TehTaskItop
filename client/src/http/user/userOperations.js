@@ -32,6 +32,7 @@ const deleteUser = (data) => (dispatch, getState) => {
 };
 
 const getUser = (data) => (dispatch, getState) => {
+  console.log(data);
   const token = getState().user.token;
   dispatch(userActions.getUserRequest());
   authHost

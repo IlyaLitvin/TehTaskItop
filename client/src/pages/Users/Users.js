@@ -7,18 +7,22 @@ import { NavLink } from "react-router-dom";
 
 export default function Users() {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.user.token);
   const getUsers = useSelector((state) => state.users);
 
   useEffect(() => {
-    dispatch(userOperations.getAllUsers(token));
-  }, [dispatch, token]);
+    dispatch(userOperations.getAllUsers());
+  }, [dispatch]);
+
+  const currentUser = (e) => {
+    console.log(e);
+    dispatch(userOperations.getUser(e));
+  };
 
   let data;
   if (getUsers.length >= 1) {
-    data = getUsers.map((el, index) => {
+    data = getUsers.map((el) => {
       return (
-        <NavLink to="/" key={index}>
+        <NavLink to={`/users/${el.id}`} key={el.id} onClick={() => currentUser}>
           <div className={styles.userInfoWrapper}>
             <p>{el.role}</p>
             <p>{el.email}</p>

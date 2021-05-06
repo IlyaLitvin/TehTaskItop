@@ -13,15 +13,14 @@ export default function Profiles() {
     id: "",
   });
   const getProfiles = useSelector((state) => state.profiles);
-  const token = useSelector((state) => state.user.token);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(profilesOperations.getProfiles(token));
-  }, [dispatch, token]);
+    dispatch(profilesOperations.getProfiles());
+  }, [dispatch]);
 
   const deleteProfile = (e) => {
-    dispatch(profilesOperations.deleteProfile(e, token));
+    dispatch(profilesOperations.deleteProfile(e));
   };
 
   let data;
