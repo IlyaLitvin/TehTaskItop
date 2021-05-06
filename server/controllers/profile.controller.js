@@ -27,10 +27,21 @@ async function getAllProfiles(req, res) {
     //     return res.status(401).send({ message: "You haven't rights" });
     //   }
     // }
-    const getProfiles = await Profile.findAll({
-      attributes: ["id", "name", "gender", "birthdate", "city"],
-      where: { userId: req.user.id },
-    });
+    const {
+      params: { id },
+    } = req;
+    let getProfiles;
+    if (id) {
+      getProfiles = await Profile.findAll({
+        attributes: ["id", "name", "gender", "birthdate", "city"],
+        where: { userId: id },
+      });
+    } else {
+      getProfiles = await Profile.findAll({
+        attributes: ["id", "name", "gender", "birthdate", "city"],
+        where: { userId: req.user.id },
+      });
+    }
     res.status(200).json(getProfiles);
   } catch (error) {
     res.status(404).send(error.message);
