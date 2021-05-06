@@ -10,7 +10,6 @@ router.post(
 );
 router.post("/login", userController.validationUser, userController.login);
 router.post("/logout", authController.authorize, userController.userLogout);
-router.get("/api/user", authController.authorize, userController.check);
 router.patch(
   "/update/:id",
   authController.authorize,
