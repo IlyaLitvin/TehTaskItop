@@ -59,7 +59,7 @@ async function login(req, res) {
   user.update({ token: token });
   return res
     .status(200)
-    .json({ token: token, role: user.role, email: user.email, id: user.id });
+    .json({ token: token, role: user.role, email: user.email });
 }
 
 async function updateUser(req, res) {

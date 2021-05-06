@@ -28,6 +28,7 @@ async function getAllProfiles(req, res) {
     //   }
     // }
     const getProfiles = await Profile.findAll({
+      attributes: ["id", "name", "gender", "birthdate", "city"],
       where: { userId: req.user.id },
     });
     res.status(200).json(getProfiles);
@@ -58,7 +59,7 @@ async function updateProfile(req, res) {
     }
     const checkId = check(profile.userId, req.user);
     if (checkId) {
-      profile.update({ name, gender, birthdate, city });
+      profile.update({ id, name, gender, birthdate, city });
       return res.status(200).json({ profile });
     }
     res.status(401).send({ message: "Haven't rights" });
