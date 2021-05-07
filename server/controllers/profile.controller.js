@@ -1,5 +1,6 @@
 const { User, Profile } = require("../models/models");
 // const { function } = require("joi");
+// const { function } = require("joi");
 
 async function addProfile(req, res) {
   try {
@@ -22,11 +23,6 @@ async function addProfile(req, res) {
 
 async function getAllProfiles(req, res) {
   try {
-    // if (+id !== req.user.id) {
-    //   if (req.user.role !== "ADMIN") {
-    //     return res.status(401).send({ message: "You haven't rights" });
-    //   }
-    // }
     const {
       params: { id },
     } = req;
@@ -43,6 +39,14 @@ async function getAllProfiles(req, res) {
       });
     }
     res.status(200).json(getProfiles);
+  } catch (error) {
+    res.status(404).send(error.message);
+  }
+}
+
+async function getProfilesById(req, res) {
+  try {
+    const { id } = req.params;
   } catch (error) {
     res.status(404).send(error.message);
   }
@@ -106,4 +110,5 @@ module.exports = {
   getAllProfiles,
   updateProfile,
   deleteProfile,
+  getProfilesById,
 };
