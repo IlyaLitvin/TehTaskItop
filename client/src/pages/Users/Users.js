@@ -13,31 +13,29 @@ export default function Users() {
     dispatch(userOperations.getAllUsers());
   }, [dispatch]);
 
-  const currentUser = (e) => {
-    console.log(e);
-    dispatch(userOperations.getUser(e));
-  };
-
-  let data;
-  if (getUsers.length >= 1) {
-    data = getUsers.map((el) => {
-      return (
-        <NavLink to={`/users/${el.id}`} key={el.id} onClick={() => currentUser}>
-          <div className={styles.userInfoWrapper}>
-            <p>{el.role}</p>
-            <p>{el.email}</p>
-            <p>{el.allProfiles} profiles</p>
-          </div>
-        </NavLink>
-      );
-    });
-  }
-
   return (
     <div>
       <NavBar />
       <div>Users:</div>
-      <div>{data}</div>
+      <div>
+        <ul>
+          {getUsers.length
+            ? getUsers.map((user) => {
+                return (
+                  <li key={user.id}>
+                    <NavLink to={`/users/${user.id}`}>
+                      <div className={styles.userInfoWrapper}>
+                        <p>{user.role}</p>
+                        <p>{user.email}</p>
+                        <p>{user.allProfiles} profiles</p>
+                      </div>
+                    </NavLink>
+                  </li>
+                );
+              })
+            : ""}
+        </ul>
+      </div>
     </div>
   );
 }

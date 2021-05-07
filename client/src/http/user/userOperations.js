@@ -32,11 +32,10 @@ const deleteUser = (data) => (dispatch, getState) => {
 };
 
 const getUser = (data) => (dispatch, getState) => {
-  console.log(data);
   const token = getState().user.token;
   dispatch(userActions.getUserRequest());
   authHost
-    .get(`/users/${data.id}`, {
+    .get(`/users/${data.id}`, data, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

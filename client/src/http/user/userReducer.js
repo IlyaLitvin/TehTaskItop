@@ -5,7 +5,9 @@ import initState from "../../initState";
 
 const userReducer = createReducer(initState.users, {
   [userActions.getAllUsersSuccess]: (_, { payload }) => payload,
-  [userActions.getUserSuccess]: (_, { payload }) => payload,
+  [userActions.getUserSuccess]: (state, { payload }) => {
+    return state.filter(({ id }) => id === payload.id);
+  },
   [userActions.deleteUserSuccess]: (state, { payload }) => {
     return state.filter(({ id }) => id !== payload.id);
   },

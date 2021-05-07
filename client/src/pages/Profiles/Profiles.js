@@ -5,7 +5,7 @@ import styles from "./Profiles.module.css";
 import ProfilesModal from "../../components/ProfilesModal";
 import { useSelector, useDispatch } from "react-redux";
 import profilesOperations from "../../http/profiles/profilesOperations";
-import ProfileItem from "../../components/ProfileItem";
+// import ProfileItem from "../../components/ProfileItem";
 
 export default function Profiles() {
   const [modalVisible, setModalVisible] = useState({
@@ -23,35 +23,36 @@ export default function Profiles() {
     dispatch(profilesOperations.deleteProfile(e));
   };
 
-  let data;
-  if (getProfiles.length >= 1) {
-    data = getProfiles.map((el, index) => {
-      return (
-        <div key={index} className={styles.createBox}>
-          <p>{el.name}</p>
-          <p>{el.gender}</p>
-          <p>{el.birthdate}</p>
-          <p>{el.city}</p>
-          <button
-            type="button"
-            onClick={() => setModalVisible({ isModalOpen: true, id: el.id })}
-          >
-            edit
-          </button>
-          <button type="button" onClick={() => deleteProfile(el.id)}>
-            delete
-          </button>
-        </div>
-      );
-    });
-  }
-
   return (
     <>
       <NavBar />
       <Container className="d-flex flex-wrap-wrap">
         <h2>Profiles:</h2>
-        <div>{data}</div>
+        <div>
+          {getProfiles.length
+            ? getProfiles.map((el, index) => {
+                return (
+                  <div key={index} className={styles.createBox}>
+                    <p>{el.name}</p>
+                    <p>{el.gender}</p>
+                    <p>{el.birthdate}</p>
+                    <p>{el.city}</p>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setModalVisible({ isModalOpen: true, id: el.id })
+                      }
+                    >
+                      edit
+                    </button>
+                    <button type="button" onClick={() => deleteProfile(el.id)}>
+                      delete
+                    </button>
+                  </div>
+                );
+              })
+            : ""}
+        </div>
         <div className={styles.createBox}>
           <Button
             variant={"outline-dark"}
