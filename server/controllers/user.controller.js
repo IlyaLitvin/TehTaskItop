@@ -64,19 +64,15 @@ async function login(req, res) {
 
 async function updateUser(req, res) {
   try {
-    const { email, role } = req.body;
+    const { role } = req.body;
     const {
       params: { id },
     } = req;
     const user = await User.findOne({ where: { id: id } });
-    const newEmail = await User.findOne({ where: { email: email } });
     if (!user) {
       return res.status(404).send({ message: "User not found" });
     }
-    if (newEmail) {
-      return res.status(404).send({ message: "Email is busy" });
-    }
-    user.update({ email, role });
+    user.update({ role });
     return res.status(200).send({ message: "User is updated" });
   } catch (error) {
     console.log(error.message);
@@ -100,6 +96,7 @@ async function deleteUser(req, res) {
 }
 
 async function userLogout(req, res) {
+  console.log(1);
   try {
     const { email } = req.user;
     const user = await User.findOne({ where: { email: email } });

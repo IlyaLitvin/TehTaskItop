@@ -4,16 +4,20 @@ const { User, Profile } = require("../models/models");
 
 async function addProfile(req, res) {
   try {
+    const {
+      params: { userId },
+    } = req;
     const { name, gender, birthdate, city } = req.body;
     const { id } = req.user;
+    const findId = userId ? userId : id;
     const profile = await Profile.create({
       name,
       gender,
       birthdate,
       city,
-      userId: id,
+      userId: findId,
     });
-    const user = await User.findOne({ where: { id: id } });
+    const user = await User.findOne({ where: { id: findId } });
     user.update({ allProfiles: user.allProfiles + 1 });
     res.status(200).json({ profile });
   } catch (error) {

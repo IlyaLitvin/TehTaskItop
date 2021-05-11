@@ -4,6 +4,7 @@ const { User } = require("../models/models");
 async function authorize(req, res, next) {
   const authorizationHeader = req.get("Authorization");
   if (!authorizationHeader) {
+    console.log(1);
     return res.status(401).send({
       message: "Not authorized",
     });
@@ -14,6 +15,7 @@ async function authorize(req, res, next) {
     const { id } = payload;
     const user = await User.findOne({ where: { id: id } });
     if (!user || user.token === null) {
+      console.log(2);
       return res.status(401).send({
         message: "Not authorized",
       });

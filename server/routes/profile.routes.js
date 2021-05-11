@@ -3,7 +3,13 @@ const router = new Router();
 const profileController = require("../controllers/profile.controller");
 const authController = require("../controllers/auth.controller");
 
+router.post(
+  "/create/:userId",
+  authController.authorize,
+  profileController.addProfile
+);
 router.post("/create", authController.authorize, profileController.addProfile);
+router.get("/:id", authController.authorize, profileController.getAllProfiles);
 router.get("", authController.authorize, profileController.getAllProfiles);
 // router.get(
 //   "/users/:id",

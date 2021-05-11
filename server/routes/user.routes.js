@@ -10,17 +10,11 @@ router.post(
 );
 router.post("/login", userController.validationUser, userController.login);
 router.post("/logout", authController.authorize, userController.userLogout);
-router.patch(
-  "/update/:id",
+router.get(
+  "/dashboard",
   authController.authorize,
   authController.checkRole,
-  userController.updateUser
-);
-router.delete(
-  "/delete/:id",
-  authController.authorize,
-  authController.checkRole,
-  userController.deleteUser
+  userController.getInfo
 );
 router.get(
   "/users",
@@ -28,12 +22,13 @@ router.get(
   authController.checkRole,
   userController.getAllUsers
 );
-router.get("/users/:id", userController.getCurrentUser);
-router.get(
-  "/dashboard",
+router.delete(
+  "/delete/:id",
   authController.authorize,
   authController.checkRole,
-  userController.getInfo
+  userController.deleteUser
 );
+router.get("/users/:id", userController.getCurrentUser);
+router.patch("/users/:id/update/:id", userController.updateUser);
 
 module.exports = router;
