@@ -48,7 +48,6 @@ const getUser = (data) => (dispatch, getState) => {
 };
 
 const updateUser = ({ data, editId }) => (dispatch, getState) => {
-  console.log(data, editId);
   const token = getState().user.token;
   dispatch(userActions.updateUserRequset());
   authHost

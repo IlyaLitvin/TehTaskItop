@@ -35,11 +35,11 @@ const login = (data) => (dispatch) => {
     );
 };
 
-const logOut = () => (dispatch, useState) => {
-  const token = useState().user.token;
+const logOut = () => (dispatch, getState) => {
+  const token = getState().user.token;
   dispatch(authAction.logoutRequest());
   authHost
-    .post("/logout", {
+    .get("/logout", {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

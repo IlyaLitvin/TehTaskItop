@@ -15,7 +15,7 @@ const authInterceptor = (config) => {
   return config;
 };
 
-// authHost.interceptors.request.use(authInterceptor);
+authHost.interceptors.request.use(authInterceptor);
 
 // authHost.interceptors.response.use(
 //   (res) => {

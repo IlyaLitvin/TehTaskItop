@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import userOperations from "../../http/user/userOperations";
-import profilesOperations from "../../http/profiles/profilesOperations";
 import UserModal from "../../components/UserModal";
 import Profiles from "../Profiles/Profiles";
 
@@ -60,9 +59,3 @@ export default function User() {
     </Container>
   );
 }
-
-// const getProfiles = useSelector((state) => state.profiles);
-// console.log(getProfiles);
-// useEffect(() => {
-//   dispatch(profilesOperations.getProfiles());
-// }, [dispatch]);

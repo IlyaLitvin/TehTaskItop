@@ -13,6 +13,7 @@ function NavBar() {
 
   const logOut = () => {
     dispatch(authOperations.logOut());
+    history.push(routes.login);
   };
 
   return (
