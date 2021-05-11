@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import NavBar from "../../components/NavBar";
 import userOperations from "../../http/user/userOperations";
 import styles from "./users.module.css";
 import { NavLink } from "react-router-dom";
@@ -15,7 +14,6 @@ export default function Users() {
 
   return (
     <div>
-      <NavBar />
       <div>Users:</div>
       <div>
         <ul>

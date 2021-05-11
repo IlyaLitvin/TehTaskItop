@@ -1,11 +1,11 @@
 import { authHost } from "../index";
 import profilesActions from "./profilesActions";
 
-const addProfile = (data) => (dispatch, getState) => {
+const addProfile = (data, id) => (dispatch, getState) => {
   const token = getState().user.token;
   dispatch(profilesActions.addProfileRequest());
   authHost
-    .post("/profiles/create", data, {
+    .post(`/profiles/create/${id}`, data, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -31,11 +31,11 @@ const deleteProfile = (id) => (dispatch, getState) => {
     .catch((error) => dispatch(profilesActions.deleteProfileError(error)));
 };
 
-const getProfiles = () => (dispatch, getState) => {
+const getProfiles = (id) => (dispatch, getState) => {
   const token = getState().user.token;
   dispatch(profilesActions.getProfilesRequest());
   authHost
-    .get("/profiles", {
+    .get(`/profiles/${id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

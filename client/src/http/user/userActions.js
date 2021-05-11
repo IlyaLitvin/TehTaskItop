@@ -12,6 +12,10 @@ const getAllUsersRequest = createAction("/getAllUsersRequest");
 const getAllUsersSuccess = createAction("/getAllUsersSuccess");
 const getAllUsersError = createAction("/getAllUsersError");
 
+const updateUserRequset = createAction("/updateUserRequset");
+const updateUserSuccess = createAction("/updateUserSuccess");
+const updateUserError = createAction("/updateUserError");
+
 export default {
   getUserRequest,
   getUserSuccess,
@@ -22,4 +26,7 @@ export default {
   getAllUsersRequest,
   getAllUsersSuccess,
   getAllUsersError,
+  updateUserRequset,
+  updateUserSuccess,
+  updateUserError,
 };

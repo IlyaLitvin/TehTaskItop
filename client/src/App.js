@@ -8,12 +8,14 @@ import Profiles from "./pages/Profiles/Profiles";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Users from "./pages/Users/Users";
 import User from "./pages/User/User";
+import NavBar from "./components/NavBar";
 
 function App() {
   const user = useSelector((state) => state.user);
 
   return (
     <Fragment>
+      {user.isAuth ? <NavBar /> : ""}
       {!user.isAuth ? (
         <Switch>
           <Route exact path="/registration" component={Registration} />

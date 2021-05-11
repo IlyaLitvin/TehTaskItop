@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import NavBar from "../../components/NavBar";
 import { useSelector, useDispatch } from "react-redux";
 import dashboardOperations from "../../http/user/dashboardOperations";
 
@@ -14,7 +13,6 @@ export default function Dashboard() {
 
   return (
     <div>
-      <NavBar />
       <div className="users">Users:{getDashboard.users}</div>
       <div className="profiles">Profiles:{getDashboard.profiles}</div>
       <div className="oldProfiles">

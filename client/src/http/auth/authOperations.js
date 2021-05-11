@@ -35,10 +35,16 @@ const login = (data) => (dispatch) => {
     );
 };
 
-const logOut = () => (dispatch) => {
+const logOut = () => (dispatch, useState) => {
+  const token = useState().user.token;
   dispatch(authAction.logoutRequest());
   authHost
-    .post("/logout")
+    .post("/logout", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then(() => {
       localStorage.removeItem("token");
       dispatch(authAction.logoutSuccess());

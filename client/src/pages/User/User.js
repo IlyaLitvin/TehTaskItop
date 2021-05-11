@@ -1,15 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import NavBar from "../../components/NavBar";
+import { useParams, useHistory } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import userOperations from "../../http/user/userOperations";
 import profilesOperations from "../../http/profiles/profilesOperations";
+import UserModal from "../../components/UserModal";
+import Profiles from "../Profiles/Profiles";
 
 export default function User() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const { id } = useParams();
   const users = useSelector((state) => state.users);
+  const [modalVisible, setModalVisible] = useState({
+    isModalOpen: false,
+    id: "",
+  });
 
   useEffect(() => {
     dispatch(userOperations.getAllUsers());
@@ -21,29 +27,37 @@ export default function User() {
     dispatch(userOperations.getUser({ user, id }));
   }, [dispatch, user, id]);
 
-  const editUser = (e) => {
-    e.preventDefault();
-    dispatch(userOperations);
+  const deleteUser = (e) => {
+    dispatch(userOperations.deleteUser(e));
+    alert("User was delete");
+    history.push("/users");
   };
 
   return (
-    <>
-      <NavBar />
-      <Container>
-        {user ? (
-          <div>
-            <p>{user.email}</p>
-            <p>{user.role}</p>
-            <button type="button">edit</button>
-            <button type="button">delete</button>
-          </div>
-        ) : (
-          <p>Can't find user</p>
-        )}
-        <h3>Profiles:</h3>
-        <div></div>
-      </Container>
-    </>
+    <Container>
+      {user ? (
+        <div>
+          <p>{user.email}</p>
+          <p>{user.role}</p>
+          <button
+            type="button"
+            onClick={() => setModalVisible({ isModalOpen: true, id: user.id })}
+          >
+            edit
+          </button>
+          <button type="button" onClick={() => deleteUser(user.id)}>
+            delete
+          </button>
+        </div>
+      ) : (
+        <p>Can't find user</p>
+      )}
+      <Profiles id={id} />
+      <UserModal
+        modalOptions={modalVisible}
+        onHide={() => setModalVisible({ isModalOpen: false })}
+      />
+    </Container>
   );
 }
 

@@ -11,7 +11,8 @@ const dataUserInit = {
   city: "",
 };
 
-export default function ProfilesModal({ modalOptions, onHide }) {
+export default function ProfilesModal({ modalOptions, onHide, id }) {
+  const userId = id ? id : "";
   const dispatch = useDispatch();
   const [userData, setUserData] = useState(dataUserInit);
   const profiles = useSelector((store) => store.profiles);
@@ -28,7 +29,7 @@ export default function ProfilesModal({ modalOptions, onHide }) {
   const addProfile = (e) => {
     e.preventDefault();
     !editId
-      ? dispatch(profilesOperations.addProfile(userData))
+      ? dispatch(profilesOperations.addProfile(userData, userId))
       : dispatch(profilesOperations.updateProfile({ data: userData, editId }));
     onHide();
     setUserData(dataUserInit);

@@ -9,9 +9,12 @@ const userReducer = createReducer(initState.users, {
     return state.filter(({ id }) => id === payload.id);
   },
   [userActions.deleteUserSuccess]: (state, { payload }) => {
-    return state.filter(({ id }) => id !== payload.id);
+    return state.filter(({ id }) => id !== payload);
   },
   [userActions.getUsersInfoSuccess]: (_, { payload }) => payload,
+  [userActions.updateUserSuccess]: (state, { payload }) => {
+    return [...state.filter(({ id }) => id !== payload.id), payload];
+  },
 });
 
 export default userReducer;

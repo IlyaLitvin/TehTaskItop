@@ -17,17 +17,17 @@ const getAllUsers = () => (dispatch, getState) => {
     );
 };
 
-const deleteUser = (data) => (dispatch, getState) => {
+const deleteUser = (id) => (dispatch, getState) => {
   const token = getState().user.token;
   dispatch(userActions.deleteUserRequest());
   authHost
-    .delete(`/delete/${data.id}`, {
+    .delete(`/delete/${id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     })
-    .then((data) => dispatch(userActions.deleteUserSuccess(data)))
+    .then(() => dispatch(userActions.deleteUserSuccess(id)))
     .catch((error) => dispatch(userActions.deleteUserError(error)));
 };
 
@@ -47,4 +47,21 @@ const getUser = (data) => (dispatch, getState) => {
     );
 };
 
-export default { getAllUsers, getUser, deleteUser };
+const updateUser = ({ data, editId }) => (dispatch, getState) => {
+  console.log(data, editId);
+  const token = getState().user.token;
+  dispatch(userActions.updateUserRequset());
+  authHost
+    .patch(`/users/${editId}/update/${editId}`, data, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(() =>
+      dispatch(userActions.updateUserSuccess({ id: editId, ...data }))
+    )
+    .catch((error) => dispatch(userActions.updateUserError(error)));
+};
+
+export default { getAllUsers, getUser, deleteUser, updateUser };
