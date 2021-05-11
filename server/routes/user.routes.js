@@ -9,7 +9,7 @@ router.post(
   userController.registration
 );
 router.post("/login", userController.validationUser, userController.login);
-router.post("/logout", authController.authorize, userController.userLogout);
+router.get("/logout", authController.authorize, userController.userLogout);
 router.get(
   "/dashboard",
   authController.authorize,

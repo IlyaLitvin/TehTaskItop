@@ -96,7 +96,6 @@ async function deleteUser(req, res) {
 }
 
 async function userLogout(req, res) {
-  console.log(1);
   try {
     const { email } = req.user;
     const user = await User.findOne({ where: { email: email } });
