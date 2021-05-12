@@ -4,7 +4,6 @@ import styles from "./Profiles.module.css";
 import ProfilesModal from "../../components/ProfilesModal";
 import { useSelector, useDispatch } from "react-redux";
 import profilesOperations from "../../http/profiles/profilesOperations";
-// import ProfileItem from "../../components/ProfileItem";
 
 export default function Profiles({ id }) {
   const userId = id ? id : "";
