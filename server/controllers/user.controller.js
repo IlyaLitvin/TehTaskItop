@@ -2,10 +2,9 @@ const Joi = require("joi");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { User, Profile } = require("../models/models");
-// const { func, function } = require("joi");
 
 const generateJwt = (id) => {
-  return jwt.sign({ id }, "~E(/]s@}};8a%|/s)ni5z_Ji+B", {
+  return jwt.sign({ id }, process.env.SECRET_KEY, {
     expiresIn: "30d",
   });
 };

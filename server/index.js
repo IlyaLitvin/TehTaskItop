@@ -5,7 +5,6 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 const cors = require("cors");
 const logger = require("morgan");
-const models = require("./models/models");
 const userRoutes = require("./routes/user.routes");
 const profileRoutes = require("./routes/profile.routes");
 

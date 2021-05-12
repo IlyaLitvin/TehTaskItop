@@ -10,7 +10,7 @@ async function authorize(req, res, next) {
   }
   const userToken = authorizationHeader.replace("Bearer ", "");
   try {
-    const payload = await jwt.verify(userToken, "~E(/]s@}};8a%|/s)ni5z_Ji+B");
+    const payload = await jwt.verify(userToken, process.env.SECRET_KEY);
     const { id } = payload;
     const user = await User.findOne({ where: { id: id } });
     if (!user || user.token === null) {

@@ -11,11 +11,6 @@ router.post(
 router.post("/create", authController.authorize, profileController.addProfile);
 router.get("/:id", authController.authorize, profileController.getAllProfiles);
 router.get("", authController.authorize, profileController.getAllProfiles);
-// router.get(
-//   "/users/:id",
-//   authController.authorize,
-//   profileController.getProfilesById
-// );
 router.patch(
   "/update/:id",
   authController.authorize,
