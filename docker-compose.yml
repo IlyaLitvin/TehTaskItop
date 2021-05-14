@@ -23,7 +23,7 @@ services:
   client:
     container_name: client
     build:
-      context: ./client
+      context: ./server/client
       dockerfile: .
     ports:
       - 3000:3000
