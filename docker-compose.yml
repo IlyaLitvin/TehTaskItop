@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: .
+    env_file: ./server/.env
+    depends_on:
+      - db
+    ports:
+      - 8080:8080
+
+  db:
+    container_name: postgres
+    image: postgres:13.2
+    env_file: ./server/.env
+    ports:
+      - 5432:5432
+    volumes:
+      - ./server/psql:/docker-entrypoint-initdb.d
+
+  client:
+    container_name: client
+    build:
+      context: ./client
+      dockerfile: .
+    ports:
+      - 3000:3000
+    command: npm start
+    depends_on:
+      - db
