@@ -68,7 +68,6 @@ export default function Login() {
                 />
               </label>
             </div>
-
             <button type="submit" className={css.button}>
               Sign In
             </button>

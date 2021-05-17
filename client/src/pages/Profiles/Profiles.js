@@ -4,6 +4,7 @@ import styles from "./Profiles.module.css";
 import ProfilesModal from "../../components/ProfilesModal";
 import { useSelector, useDispatch } from "react-redux";
 import profilesOperations from "../../http/profiles/profilesOperations";
+import Profile from './Profile'
 
 export default function Profiles({ id }) {
   const userId = id ? id : "";
@@ -11,7 +12,7 @@ export default function Profiles({ id }) {
     isModalOpen: false,
     id: "",
   });
-  const getProfiles = useSelector((state) => state.profiles);
+  const getProfiles = useSelector((state) => state.profiles || []);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,31 +26,11 @@ export default function Profiles({ id }) {
   return (
     <Container className="d-flex flex-wrap-wrap">
       <h2>Profiles:</h2>
-      <div>
-        {getProfiles.length
-          ? getProfiles.map((el, index) => {
-              return (
-                <div key={index} className={styles.createBox}>
-                  <p>{el.name}</p>
-                  <p>{el.gender}</p>
-                  <p>{el.birthdate}</p>
-                  <p>{el.city}</p>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setModalVisible({ isModalOpen: true, id: el.id })
-                    }
-                  >
-                    edit
-                  </button>
-                  <button type="button" onClick={() => deleteProfile(el.id)}>
-                    delete
-                  </button>
-                </div>
-              );
-            })
-          : ""}
-      </div>
+      {getProfiles.length && getProfiles.map((el)=>{
+        <li key={el.id}>
+          <Profile deleteProfile={deleteProfile } setModalVisible={setModalVisible} />
+        </li>
+      })}
       <div className={styles.createBox}>
         <Button
           variant={"outline-dark"}

@@ -7,7 +7,5 @@
   border: 1px solid #d6d8e7;
 
   border-radius: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
 }
