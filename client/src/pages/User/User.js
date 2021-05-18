@@ -1,37 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import React from "react";
 import { Container } from "react-bootstrap";
-import userOperations from "../../http/user/userOperations";
-import UserModal from "../../components/UserModal";
 import Profiles from "../Profiles/Profiles";
 
-export default function User() {
-  const history = useHistory();
-  const dispatch = useDispatch();
-  const { id } = useParams();
-  const users = useSelector((state) => state.users);
-  const [modalVisible, setModalVisible] = useState({
-    isModalOpen: false,
-    id: "",
-  });
-
-  useEffect(() => {
-    dispatch(userOperations.getAllUsers());
-  }, [dispatch]);
-
-  const user = id ? users.find((u) => u.id === +id) : null;
-
-  useEffect(() => {
-    dispatch(userOperations.getUser({ user, id }));
-  }, [dispatch, user, id]);
-
-  const deleteUser = (e) => {
-    dispatch(userOperations.deleteUser(e));
-    alert("User was delete");
-    history.push("/users");
-  };
-
+export default function User({deleteUser,id,user,setModalVisible}) {
   return (
     <Container>
       {user ? (
@@ -52,10 +23,6 @@ export default function User() {
         <p>Can't find user</p>
       )}
       <Profiles id={id} />
-      <UserModal
-        modalOptions={modalVisible}
-        onHide={() => setModalVisible({ isModalOpen: false })}
-      />
     </Container>
   );
 }

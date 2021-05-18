@@ -11,13 +11,13 @@ const dataUserInit = {
   city: "",
 };
 
-export default function ProfilesModal({ modalOptions, onHide, id }) {
+export default function ProfilesModal({ modalVisible, onHide, id }) {
   const userId = id ? id : "";
   const dispatch = useDispatch();
   const [userData, setUserData] = useState(dataUserInit);
   const profiles = useSelector((store) => store.profiles);
 
-  const { isModalOpen, id: editId } = modalOptions;
+  const { isModalOpen, id: editId } = modalVisible;
 
   const onChange = (e) => {
     const { value, name } = e.target;

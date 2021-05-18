@@ -4,10 +4,10 @@ import { useSelector } from "react-redux";
 
 import Registration from "./pages/Registration/Registration";
 import Login from "./pages/Login/Login";
-import Profiles from "./pages/Profiles/Profiles";
-import Dashboard from "./pages/Dashboard/Dashboard";
-import Users from "./pages/Users/Users";
-import User from "./pages/User/User";
+import Profiles from "./pages/Profiles/ProfilesLogic";
+import Dashboard from "./pages/Dashboard/DashboardLogic";
+import Users from "./pages/Users/UsersLogic";
+import User from "./pages/User/UserLogic";
 import NavBar from "./components/NavBar";
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
 
   return (
     <Fragment>
-      {user.isAuth ? <NavBar /> : ""}
+      {user.isAuth ? <NavBar /> : null}
       {!user.isAuth ? (
         <Switch>
           <Route exact path="/registration" component={Registration} />

@@ -1,6 +1,7 @@
 .createBox {
   width: 200px;
   height: 150px;
+  margin: 20px;
 
   background: rgba(255, 255, 255, 0.5);
 

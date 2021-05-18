@@ -1,22 +1,16 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import dashboardOperations from "../../http/user/dashboardOperations";
+import React from "react";
 
-export default function Dashboard() {
-  const dispatch = useDispatch();
-  const token = useSelector((state) => state.user.token);
-  const getDashboard = useSelector((state) => state.dashboard);
-
-  useEffect(() => {
-    dispatch(dashboardOperations.getInfo(token));
-  }, [dispatch, token]);
-
+export default function Dashboard({getDashboard = {}}) {
   return (
     <div>
-      <div className="users">Users:{getDashboard.users}</div>
-      <div className="profiles">Profiles:{getDashboard.profiles}</div>
+      <div className="users">
+        <p>Users:{getDashboard.users}</p>
+      </div>
+      <div className="profiles">
+        <p>Profiles:{getDashboard.profiles}</p>
+      </div>
       <div className="oldProfiles">
-        Profiles over 18 years old:{getDashboard.oldProfiles}
+        <p>Profiles over 18 years old:{getDashboard.oldProfiles}</p>
       </div>
     </div>
   );
