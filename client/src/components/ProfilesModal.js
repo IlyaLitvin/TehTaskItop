@@ -51,7 +51,8 @@ export default function ProfilesModal({ modalVisible, onHide, id }) {
             <div className="input-group mb-3">
               <div className="input-group mb-3">
                 <label htmlFor="name">
-                  name:
+                  Name:
+                </label>
                   <input
                     type="text"
                     name="name"
@@ -60,7 +61,6 @@ export default function ProfilesModal({ modalVisible, onHide, id }) {
                     required
                     onChange={onChange}
                   />
-                </label>
               </div>
               <div className="input-group mb-3">
                 <span>Gender:</span>
@@ -91,7 +91,7 @@ export default function ProfilesModal({ modalVisible, onHide, id }) {
               </div>
               <div className="input-group mb-3">
                 <label htmlFor="birthdate">
-                  birthdate:
+                  Birthdate:
                   <input
                     type="text"
                     name="birthdate"
@@ -104,7 +104,7 @@ export default function ProfilesModal({ modalVisible, onHide, id }) {
               </div>
               <div className="input-group mb-3">
                 <label htmlFor="city">
-                  city:
+                  City:
                   <input
                     type="text"
                     name="city"

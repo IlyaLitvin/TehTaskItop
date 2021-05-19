@@ -1,10 +1,10 @@
 import React from "react";
 import { Navbar, Nav, Button, Container } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import routes from "../routes";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import authOperations from "../http/auth/authOperations";
+
 
 function NavBar() {
   const user = useSelector((state) => state.user);

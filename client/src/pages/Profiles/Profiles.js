@@ -3,7 +3,6 @@ import { Container, Button } from "react-bootstrap";
 import styles from "./Profiles.module.css";
 
 export default function Profiles({ deleteProfile, setModalVisible, getProfiles = [] }) {
-  
    return (
     <Container className="d-flex flex-wrap-wrap">
       <h2>Profiles:</h2>
