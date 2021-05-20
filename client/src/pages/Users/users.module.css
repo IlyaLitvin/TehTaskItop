@@ -1,12 +1,27 @@
-.userInfoWrapper {
-  width: 180px;
-  height: 100px;
+.list {
+  display: flex;
+}
+.listItem {
+  width: 240px;
+  height: 180px;
   margin: 10px;
-
+}
+.listItemLink {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: 0.75px;
+  color: #4e4b66;
+}
+.userInfoWrapper {
+  padding: 30px;
+  width: 100%;
+  height: 100%;
+  margin: 10px;
   background: rgba(255, 255, 255, 0.5);
-
   border: 1px solid #d6d8e7;
-
   border-radius: 16px;
   text-align: center;
 }

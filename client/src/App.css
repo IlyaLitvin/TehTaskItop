@@ -1,22 +1,39 @@
 html {
   box-sizing: border-box;
 }
-
 *,
 *::before,
 *::after {
   box-sizing: inherit;
 }
-
 #root {
   margin: 0;
   padding: 0;
 }
-
 body {
   margin: 0;
   padding: 0;
-  font-family: "Roboto";
+  font-family: "Roboto", sans-serif;
   background-color: #e5e5e5;
   width: 100%;
+}
+a {
+  display: block;
+  text-decoration: none;
+}
+button {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0 0;
+}
+button:focus {
+  outline: none;
+}
+img {
+  display: block;
+  max-width: 100%;
+  object-fit: cover;
+}
+ul {
+  list-style: none;
 }

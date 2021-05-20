@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard/DashboardLogic";
 import Users from "./pages/Users/UsersLogic";
 import User from "./pages/User/UserLogic";
 import NavBar from "./components/NavBar";
+import './App.css';
 
 function App() {
   const user = useSelector((state) => state.user);

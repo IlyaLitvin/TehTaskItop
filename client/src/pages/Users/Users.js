@@ -5,14 +5,14 @@ import { NavLink } from "react-router-dom";
 export default function Users({getUsers = []}) {
    return (
     <div>
-      <h2>Users:</h2>
-      <div>
-        <ul>
+      <h2 className={styles.title}>Users:</h2>
+      <div className={styles.wrapper}>
+        <ul className={styles.list}>
           {getUsers.length
             ? getUsers.map((user) => {
                 return (
-                  <li key={user.id}>
-                    <NavLink to={`/users/${user.id}`}>
+                  <li key={user.id} className={styles.listItem}>
+                    <NavLink to={`/users/${user.id}`} className={styles.listItemLink}>
                         <div className={styles.userInfoWrapper}>
                           <p>{user.role}</p>
                           <p>{user.email}</p>

@@ -34,7 +34,7 @@ export default function Login() {
         onSubmit={handeSumbit}
       >
         {({ errors, touched }) => (
-          <Form>
+          <Form className={css.form}>
             <h1 className={css.title}>Sign in</h1>
             <div className={css.registrationInputs}>
               <label className={css.formLabel}>

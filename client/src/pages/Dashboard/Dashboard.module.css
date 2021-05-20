@@ -1,0 +1,49 @@
+.mainWrapper {
+  display: flex;
+}
+.userWrapper {
+  width: 200px;
+  height: 180px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  text-align: center;
+  margin: 60px 80px auto 120px;
+  padding-top: 30px;
+}
+.profileWrapper {
+  width: 200px;
+  height: 180px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 60px;
+  margin-right: 80px;
+  padding-top: 30px;
+}
+.wrapperForOld {
+  width: 450px;
+  height: 180px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  margin-top: 60px;
+  padding-top: 30px;
+  text-align: center;
+}
+.text {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 34px;
+  letter-spacing: 1px;
+  color: #14142b;
+}
+.number {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 34px;
+  letter-spacing: 1px;
+  color: #14142b;
+}

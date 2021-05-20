@@ -38,7 +38,7 @@ export default function Registration() {
         onSubmit={handeSumbit}
       >
         {({ errors, touched }) => (
-          <Form>
+          <Form className={css.form}>
             <h1 className={css.title}>Create your account</h1>
             <div className={css.registrationInputs}>
               <label className={css.formLabel}>
