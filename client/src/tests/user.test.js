@@ -1,10 +1,13 @@
 import React from "react";
-import { createStore } from "redux";
+import { createStore , applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import User from '../pages/User/User';
 import reducer from '../http/user/userReducer';
+import thunk from 'redux-thunk';
+
+const enchaser = applyMiddleware(thunk);
 
 const mockUser = {
     id: 1,
@@ -15,7 +18,7 @@ const mockUser = {
 
 const renderWithRedux = (
   component,
-  { initialState, store = createStore(reducer, initialState) } = {}
+  { initialState, store = createStore(reducer, initialState, enchaser) } = {}
 ) => {
   return {
     ...render(<Provider store={store}>{component}</Provider>),

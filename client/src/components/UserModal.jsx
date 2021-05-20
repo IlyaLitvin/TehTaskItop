@@ -8,11 +8,11 @@ const dataUserInit = {
   role: "",
 };
 
-export default function UserModal({ modalOptions, onHide }) {
+export default function UserModal({ modalVisible, onHide }) {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
   const [userData, setUserData] = useState(dataUserInit);
-  const { isModalOpen, id: editId } = modalOptions;
+  const { isModalOpen, id: editId } = modalVisible;
 
   const onChange = (e) => {
     const { value, name } = e.target;

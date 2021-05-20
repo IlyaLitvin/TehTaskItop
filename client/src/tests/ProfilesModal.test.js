@@ -3,8 +3,9 @@ import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
 import { render, fireEvent, screen } from '@testing-library/react';
 import userEvent from "@testing-library/user-event";
-import ProfilesModal from '../components/ProfilesModal'
-import reducer from '../http/auth/authReducer';
+import ProfilesModal from '../components/ProfilesModal';
+import UserModal from '../components/UserModal';
+import reducer from '../http/profiles/profilesReducer';
 import { BrowserRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
 
@@ -27,8 +28,12 @@ const renderWithRedux = (
 };
 
 describe('Modal should', () => {
-    it('render', () => {
+    it('render profile', () => {
         const { container } = renderWithRedux(<ProfilesModal isModalOpen={jest.fn()} modalVisible={jest.fn()}  />);
+        expect(container).toBeInTheDocument();
+    });
+    it('render user', () => {
+        const { container } = renderWithRedux(<UserModal isModalOpen={jest.fn()} modalVisible={jest.fn()}  />);
         expect(container).toBeInTheDocument();
     });
     // it('sumbit form', () => {

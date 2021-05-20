@@ -40,7 +40,7 @@ export default function UserLogic() {
             user={user}  
         />
         <UserModal
-            modalOptions={modalVisible}
+            modalVisible={modalVisible}
             onHide={() => setModalVisible({ isModalOpen: false })}
         />
     </>

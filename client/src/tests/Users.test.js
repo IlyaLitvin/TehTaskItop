@@ -1,10 +1,14 @@
 import React from "react";
-import { createStore } from "redux";
+import { createStore , applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { render } from "@testing-library/react";
 import Users from '../pages/Users/Users';
+import UsersLogic from '../pages/Users/UsersLogic'
 import reducer from '../http/user/userReducer';
 import { BrowserRouter } from "react-router-dom";
+import thunk from 'redux-thunk';
+
+const enchaser = applyMiddleware(thunk);
 
 const mockUser= [
     {
@@ -21,7 +25,7 @@ const mockUser= [
 
 const renderWithRedux = (
   component,
-  { initialState, store = createStore(reducer, initialState) } = {}
+  { initialState, store = createStore(reducer, initialState, enchaser) } = {}
 ) => {
   return {
       ...render(
@@ -37,6 +41,10 @@ const renderWithRedux = (
 describe('Users should', () => {
     it('render', () => {
         const { container } = renderWithRedux(<Users />);
+        expect(container).toBeInTheDocument();
+    });
+    it('render', () => {
+        const { container } = renderWithRedux(<UsersLogic />, { initialState: { user: { token: "ADMIN" } } });
         expect(container).toBeInTheDocument();
     });
     it('return users array', () => {
