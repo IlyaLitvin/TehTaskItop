@@ -2,8 +2,8 @@ import React from "react";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { render } from "@testing-library/react";
-import Users from './Users';
-import reducer from '../../http/user/userReducer';
+import Users from '../pages/Users/Users';
+import reducer from '../http/user/userReducer';
 import { BrowserRouter } from "react-router-dom";
 
 const mockUser= [

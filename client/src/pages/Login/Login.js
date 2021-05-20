@@ -45,6 +45,7 @@ export default function Login() {
                   type="email"
                   name="email"
                   placeholder="E-mail *"
+                  aria-label="email-input"
                 />
                 <ErrorMessage
                   className={css.validField}
@@ -60,6 +61,7 @@ export default function Login() {
                   type="password"
                   name="password"
                   placeholder="Пароль *"
+                  aria-label="passowrd-input"
                 />
                 <ErrorMessage
                   className={css.validField}

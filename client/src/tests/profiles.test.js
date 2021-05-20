@@ -3,8 +3,8 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Profiles from './Profiles';
-import reducer from '../../http/profiles/profilesReducer';
+import Profiles from '../pages/Profiles/Profiles';
+import reducer from '../http/profiles/profilesReducer';
 
 const mockProfiles = [
     {

@@ -3,8 +3,8 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import User from './User';
-import reducer from '../../http/user/userReducer';
+import User from '../pages/User/User';
+import reducer from '../http/user/userReducer';
 
 const mockUser = {
     id: 1,

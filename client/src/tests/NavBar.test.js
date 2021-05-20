@@ -3,7 +3,7 @@ import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
 import { render, act } from '@testing-library/react';
 import userEvent from "@testing-library/user-event";
-import NavBar from './NavBar';
+import NavBar from '../components/NavBar';
 import reducer from '../http/auth/authReducer';
 import { BrowserRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';

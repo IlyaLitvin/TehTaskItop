@@ -3,8 +3,8 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Dashboard from './Dashboard';
-import reducer from '../../http/user/dashboardReducer';
+import Dashboard from '../pages/Dashboard/Dashboard';
+import reducer from '../http/user/dashboardReducer';
 
 const renderWithRedux = (
   component,
